@@ -6,3 +6,12 @@ target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-graphics)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-audio)
+
+add_custom_command(TARGET ${SPACE_SHOOTER_GAME_TARGET_NAME}
+POST_BUILD
+COMMAND
+#If file is updated, copy it to the build folder
+${CMAKE_COMMAND} -E copy_if_different
+$<TARGET_FILE: sfml-window>
+$<TARGET_FILE_DIR: ${SPACE_SHOOTER_GAME_TARGET_NAME}>
+)
