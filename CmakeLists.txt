@@ -27,3 +27,13 @@ set(SPACE_SHOOTER_GAME_TARGET_NAME SpaceShooter)
 
 #Include sub-dir 
 add_subdirectory(SpaceShooter)
+
+add_custom_command(
+TARGET ${SPACE_SHOOTER_GAME_TARGET_NAME}
+POST_BUILD
+COMMAND
+#If file is updated, copy it to the build folder
+${CMAKE_COMMAND} -E copy_if_different
+$<TARGET_FILE: sfml-window>
+$<TARGET_FILE_DIR: ${SPACE_SHOOTER_GAME_TARGET_NAME}>
+)
