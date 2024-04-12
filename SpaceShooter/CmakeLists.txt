@@ -1,17 +1,22 @@
 add_executable(${SPACE_SHOOTER_GAME_TARGET_NAME}
-	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-) 
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+)
 
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-graphics)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${SPACE_SHOOTER_GAME_TARGET_NAME} PUBLIC sfml-audio)
 
-add_custom_command(TARGET ${SPACE_SHOOTER_GAME_TARGET_NAME}
-POST_BUILD
-COMMAND
-#If file is updated, copy it to the build folder
-${CMAKE_COMMAND} -E copy_if_different
-$<TARGET_FILE: sfml-window>
-$<TARGET_FILE_DIR: ${SPACE_SHOOTER_GAME_TARGET_NAME}>
+function(CopyLibToTarget LIB_NAME TARGET_NAME)
+add_custom_command(TARGET ${TARGET_NAME}
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:${LIB_NAME}>  # Corrected typo here
+    $<TARGET_FILE_DIR:${TARGET_NAME}>
 )
+endfunction()
+
+CopyLibToTarget(sfml-graphics ${SPACE_SHOOTER_GAME_TARGET_NAME})
+CopyLibToTarget(sfml-window ${SPACE_SHOOTER_GAME_TARGET_NAME})
+CopyLibToTarget(sfml-system ${SPACE_SHOOTER_GAME_TARGET_NAME})
+CopyLibToTarget(sfml-audio ${SPACE_SHOOTER_GAME_TARGET_NAME})
