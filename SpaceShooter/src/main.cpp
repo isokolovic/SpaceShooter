@@ -1,18 +1,11 @@
 #include <iostream>
+#include <memory>
 #include <SFML/Graphics.hpp>
+#include "framework/Application.h"
 
 int main() {
-	sf::RenderWindow renderWindow{ sf::VideoMode(100, 100), "MyWindow" };
 
-	//If Event is close, close the window
-	while(renderWindow.isOpen()) {
-		sf::Event windowEvent;
-		while (renderWindow.pollEvent(windowEvent)) {
-			if (windowEvent.type == sf::Event::EventType::Closed()) {
-				renderWindow.close();
-			}
-		}
-	}
-
-	std::cout << "Hello world! " << std::endl;
+	//Allocate Applicaiton on the Heap, unique pointer
+	std::unique_ptr<ly::Application> app = std::make_unique<ly::Application>();
+	app->Run();
 }
