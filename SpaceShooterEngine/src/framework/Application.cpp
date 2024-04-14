@@ -1,11 +1,13 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
+#include "framework/World.h"
 
-namespace ly{
+namespace ss{
 	Application::Application()
 		: mWindow{ sf::VideoMode(600, 800), "Space Shooter" }, 
 		mTargetFrameRate{60.f},
-		mTickClock{}
+		mTickClock{},
+		currentWorld{nullptr}
 	{
 
 	}
@@ -26,7 +28,7 @@ namespace ly{
 			}
 
 			float frameDeltaTime = mTickClock.restart().asSeconds();
-			accumulatedTime += mTickClock.restart().asSeconds();
+			accumulatedTime += frameDeltaTime;
 
 			while (accumulatedTime > targetDeltaTime)
 			{
@@ -34,14 +36,19 @@ namespace ly{
 				TickInternal(targetDeltaTime);
 				RenderInternal();
 			}
-
-			LOG("Ticking at frame rate: %f", 1.f / frameDeltaTime);
 		}
 	}
 
 	void Application::TickInternal(float deltaTime)
 	{
+		//Execute Tick on the top level first then TickInternal of the currentWorld
+		//First tick if player input, after what game logic is updated
 		Tick(deltaTime);
+
+		if (currentWorld) {
+			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
+			currentWorld->TickInternal(deltaTime);
+		}
 	}
 
 	void Application::RenderInternal()

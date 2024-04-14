@@ -1,10 +1,11 @@
 #pragma once
 #include <framework/Application.h>
 
-namespace ly {
+namespace ss {
 
 	class GameApplication : public Application {
 
+	public:
+		GameApplication();
 	};
-
 }

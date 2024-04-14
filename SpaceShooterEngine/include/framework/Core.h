@@ -1,9 +1,11 @@
+#pragma once
+
 #include <stdio.h>
 #include <memory>
 #include <map>
 #include <unordered_map>
 
-namespace ly {
+namespace ss {
 
 //Define smart pointers:
 template<typename T>
