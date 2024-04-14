@@ -29,6 +29,7 @@ namespace ly{
 			{
 				accumulatedTime -= targetDeltaTime;
 				Tick(targetDeltaTime);
+				Render();
 			}
 		}
 	}
@@ -38,5 +39,14 @@ namespace ly{
 	}
 	void Application::Render()
 	{
+		mWindow.clear();
+
+		sf::RectangleShape rect{ sf::Vector2f{100, 100} };
+		rect.setFillColor(sf::Color::Green);
+		rect.setOrigin(50, 50);
+		rect.setPosition(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
+
+		mWindow.draw(rect);
+		mWindow.display();
 	}
 }
