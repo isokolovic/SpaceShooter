@@ -23,7 +23,9 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(${SFML_LIB_NAME}) #Make it available to project(s)
 
 #Variable NAME Value
-set(SPACE_SHOOTER_GAME_TARGET_NAME SpaceShooter)
+set(SPACE_SHOOTER_ENGINE_TARGET_NAME SpaceShooterEngine)
+set(SPACE_SHOOTER_GAME_TARGET_NAME SpaceShooterGame)
 
 #Include sub-dir 
-add_subdirectory(SpaceShooter)
+add_subdirectory(SpaceShooterEngine)
+add_subdirectory(SpaceShooterGame)
