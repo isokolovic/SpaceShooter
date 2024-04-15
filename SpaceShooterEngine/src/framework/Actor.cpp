@@ -9,6 +9,10 @@ namespace ss {
 
 	}
 
+	Actor::~Actor()
+	{
+	}
+
 	void Actor::BeginPlayInternal()
 	{
 		if (!mHasBeganPlay) {
