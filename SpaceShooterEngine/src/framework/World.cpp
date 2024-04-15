@@ -30,6 +30,17 @@ namespace ss {
 		mPendingActors.clear();
 
 		//Make actors play at the begining of every tick
+		for (auto iter = mActors.begin(); iter != mActors.end();) {
+			if (iter->get()->IsPendingDestroy()) {
+				iter = mActors.erase(iter);//Removing from Actors vector (which were sent pending destroy in previous loop)
+			}
+			else {
+				iter->get()->Tick(deltaTime);
+				++iter; //If not pending dstroy, move to another one
+			}
+		}
+
+
 		for (shared<Actor> actor : mActors) {
 			actor->Tick(deltaTime);
 		}

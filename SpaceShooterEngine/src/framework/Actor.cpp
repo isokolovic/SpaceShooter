@@ -5,12 +5,13 @@ namespace ss {
 
 	Actor::Actor(World* owningWorld)
 		:mowningWorld{ owningWorld }, 
-		mHasBeganPlay{ false } {
-
+		mHasBeganPlay{ false } 
+	{
 	}
 
 	Actor::~Actor()
 	{
+		LOG("Actor destroyed.");
 	}
 
 	void Actor::BeginPlayInternal()
