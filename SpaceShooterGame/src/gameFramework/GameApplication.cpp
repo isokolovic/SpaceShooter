@@ -1,5 +1,6 @@
 #include "gameFramework/GameApplication.h"
 #include <framework/World.h>
+#include "framework/Actor.h"
 
 ss::Application* GetApplication() {
 
@@ -9,6 +10,7 @@ ss::Application* GetApplication() {
 namespace ss {
 	GameApplication::GameApplication()
 	{
-		LoadWorld<World>();
+		weak<World> newWorld = LoadWorld<World>();
+		newWorld.lock()->SpawnActor<Actor>(); //Because it's a weak reference, must be locked first
 	}
 }
