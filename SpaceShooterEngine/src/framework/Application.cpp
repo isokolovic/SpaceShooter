@@ -3,14 +3,15 @@
 #include "framework/World.h"
 
 namespace ss{
-	Application::Application()
-		: mWindow{ sf::VideoMode(600, 800), "Space Shooter" }, 
-		mTargetFrameRate{60.f},
-		mTickClock{},
-		currentWorld{nullptr}
-	{
 
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
+		: mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
+		mTargetFrameRate{ 60.f },
+		mTickClock{},
+		currentWorld{ nullptr }
+	{
 	}
+
 	void Application::Run()
 	{
 		mTickClock.restart();

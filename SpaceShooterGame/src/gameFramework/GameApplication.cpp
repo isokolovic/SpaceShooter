@@ -9,6 +9,7 @@ ss::Application* GetApplication() {
 
 namespace ss {
 	GameApplication::GameApplication()
+		: Application(600, 800, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
 	{
 		weak<World> newWorld = LoadWorld<World>();
 		newWorld.lock()->SpawnActor<Actor>(); //Because it's a weak reference, must be locked first to get a pointer. 
