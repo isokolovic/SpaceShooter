@@ -1,5 +1,6 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
+#include "framework/AssetManager.h"
 
 namespace ss {
 
@@ -44,11 +45,13 @@ namespace ss {
 
 	void Actor::SetTexture(const std::string& texturePath)
 	{
-		mTexture.loadFromFile(texturePath);
-		mSprite.setTexture(mTexture);
+		mTexture = AssetManager::Get().LoadTexture(texturePath);
+		if (!mTexture) return;
 
-		int textureWidth = mTexture.getSize().x;
-		int textureHeight = mTexture.getSize().y;
+		mSprite.setTexture(*mTexture);
+
+		int textureWidth = mTexture->getSize().x;
+		int textureHeight = mTexture->getSize().y;
 		mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight}});
 	}
 
