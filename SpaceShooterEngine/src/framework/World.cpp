@@ -35,7 +35,7 @@ namespace ss {
 				iter = mActors.erase(iter);//Removing from Actors vector (which were sent pending destroy in previous loop)
 			}
 			else {
-				iter->get()->Tick(deltaTime);
+				iter->get()->TickInternal(deltaTime);
 				++iter; //If not pending dstroy, move to another one
 			}
 		}
@@ -46,6 +46,13 @@ namespace ss {
 		}
 
 		Tick(deltaTime);
+	}
+
+	void World::Render(sf::RenderWindow& window)
+	{
+		for (auto actor : mActors) {
+			actor->Render(window);
+		}
 	}
 
 	World::~World()

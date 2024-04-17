@@ -12,11 +12,12 @@ namespace ss {
 		: Application(600, 800, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
 	{
 		weak<World> newWorld = LoadWorld<World>();
-		newWorld.lock()->SpawnActor<Actor>(); //Because it's a weak reference, must be locked first to get a pointer. 
 
+		newWorld.lock()->SpawnActor<Actor>(); //Because it's a weak reference, must be locked first to get a pointer. 
 		actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-		counter = 0;
-		actorToDestroy.lock()->Destroy();
+		actorToDestroy.lock()->SetTexture("C:/Users/isoko/source/repos/isokolovic/SpaceShooterGame/SpaceShooterGame/assets/SpaceShooterRedux/PNG/playerShip1_blue.png");
+		
+		counter = 0;		
 	}
 
 	void GameApplication::Tick(float deltaTime)

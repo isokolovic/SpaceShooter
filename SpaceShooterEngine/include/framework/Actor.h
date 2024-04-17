@@ -1,5 +1,8 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+
 #include "framework/Object.h"
+#include "framework/Core.h"
 
 namespace ss {
 
@@ -7,15 +10,22 @@ namespace ss {
 
 	class Actor : public Object
 	{
+
 	public:
-		Actor(World* owningWorld);
+		Actor(World* owningWorld, const std::string& texturePath = "");
 		virtual ~Actor();
 		void BeginPlayInternal();
+		void TickInternal(float deltaTime);
 		virtual void BeginPlay();
 		virtual void Tick(float deltaTime);
+		void SetTexture(const std::string& texturePath);
+		void Render(sf::RenderWindow& window);
 
-	private:
+	private: 
 		World* mowningWorld;
 		bool mHasBeganPlay;
+
+		sf::Sprite mSprite; 
+		sf::Texture mTexture; 
 	};
 }
