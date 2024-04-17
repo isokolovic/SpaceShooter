@@ -27,6 +27,9 @@ namespace ss {
 		sf::Clock mTickClock;
 
 		shared<World> currentWorld;
+
+		sf::Clock mCleanCycleClock;
+		float mCleanCycleInterval;
 	};
 
 	//Template function cannot be in .cpp file

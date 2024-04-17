@@ -1,6 +1,7 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
 #include "framework/World.h"
+#include "framework/AssetManager.h"
 
 namespace ss{
 
@@ -8,7 +9,9 @@ namespace ss{
 		: mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
 		mTargetFrameRate{ 60.f },
 		mTickClock{},
-		currentWorld{ nullptr }
+		currentWorld{ nullptr },
+		mCleanCycleClock{},
+		mCleanCycleInterval{2.f}
 	{
 	}
 
@@ -49,6 +52,11 @@ namespace ss{
 		if (currentWorld) {
 			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
 			currentWorld->TickInternal(deltaTime);
+		}
+
+		if (mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval) {
+			mCleanCycleClock.restart();
+			AssetManager::Get().CleanCycle();
 		}
 	}
 

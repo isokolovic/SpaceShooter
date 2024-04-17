@@ -61,11 +61,11 @@ namespace ss {
 
 	void World::BeginPlay()
 	{
-		LOG("Began play. ");
+		//LOG("Began play. ");
 	}
 
 	void World::Tick(float deltaTime)
 	{
-		LOG("Began play at frame rate %f", 1.f / deltaTime);
+		//LOG("Began play at frame rate %f", 1.f / deltaTime);
 	}
 }

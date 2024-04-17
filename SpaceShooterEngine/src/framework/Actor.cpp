@@ -35,12 +35,12 @@ namespace ss {
 
 	void Actor::BeginPlay()
 	{
-		LOG("Actor began playing. ");
+		//LOG("Actor began playing. ");
 	}
 
 	void Actor::Tick(float deltaTime)
 	{
-		LOG("Actor ticking. ");
+		//LOG("Actor ticking. ");
 	}
 
 	void Actor::SetTexture(const std::string& texturePath)
