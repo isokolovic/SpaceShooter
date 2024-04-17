@@ -1,6 +1,7 @@
 #include "gameFramework/GameApplication.h"
 #include <framework/World.h>
 #include "framework/Actor.h"
+#include "config.h"
 
 ss::Application* GetApplication() {
 
@@ -15,7 +16,7 @@ namespace ss {
 
 		newWorld.lock()->SpawnActor<Actor>(); //Because it's a weak reference, must be locked first to get a pointer. 
 		actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-		actorToDestroy.lock()->SetTexture("C:/Users/isoko/source/repos/isokolovic/SpaceShooterGame/SpaceShooterGame/assets/SpaceShooterRedux/PNG/playerShip1_blue.png");
+		actorToDestroy.lock()->SetTexture(GetResourceDir() + "/SpaceShooterRedux/PNG/playerShip1_blue.png");
 		
 		counter = 0;		
 	}
