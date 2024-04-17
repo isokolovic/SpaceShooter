@@ -16,7 +16,7 @@ namespace ss {
 	shared<sf::Texture> AssetManager::LoadTexture(const std::string& path)
 	{
 		auto found = mLoadedTextureMap.find(path);
-		
+
 		if (found != mLoadedTextureMap.end()) {
 			return found->second;
 		}
@@ -39,8 +39,8 @@ namespace ss {
 				LOG("Cleaning texture: %s", iter->first.c_str());
 				iter = mLoadedTextureMap.erase(iter);
 			}
-			else 
-{
+			else
+			{
 				++iter;
 			}
 		}

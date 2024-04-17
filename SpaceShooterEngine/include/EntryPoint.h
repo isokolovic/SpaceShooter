@@ -2,7 +2,7 @@
 
 namespace ss {
 
-	class Application; 
+	class Application;
 }
 
 extern ss::Application* GetApplication();

@@ -4,11 +4,11 @@
 
 namespace ss {
 
-	World::World(Application* owningApp) 
-		: mOwningApp{owningApp}, 
-		mBeganPlay{ false }, 
+	World::World(Application* owningApp)
+		: mOwningApp{ owningApp },
+		mBeganPlay{ false },
 		mActors{},
-		mPendingActors{}{
+		mPendingActors{} {
 	}
 
 	void World::BeginPlayInternal()

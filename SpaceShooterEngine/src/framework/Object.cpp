@@ -4,7 +4,7 @@
 namespace ss {
 
 	ss::Object::Object()
-		:mIsPendingDestroy{false}
+		:mIsPendingDestroy{ false }
 	{
 	}
 

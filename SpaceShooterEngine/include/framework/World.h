@@ -3,7 +3,7 @@
 #include "framework/Core.h"
 
 namespace ss {
-	
+
 	class Actor;
 
 	class Application;
@@ -28,7 +28,7 @@ namespace ss {
 
 		Application* mOwningApp;
 		bool mBeganPlay;
-		
+
 		List<shared<Actor>> mActors;
 		List<shared<Actor>> mPendingActors;
 	};

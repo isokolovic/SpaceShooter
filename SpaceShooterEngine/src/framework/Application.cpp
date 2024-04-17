@@ -3,7 +3,7 @@
 #include "framework/World.h"
 #include "framework/AssetManager.h"
 
-namespace ss{
+namespace ss {
 
 	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
 		: mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
@@ -11,7 +11,7 @@ namespace ss{
 		mTickClock{},
 		currentWorld{ nullptr },
 		mCleanCycleClock{},
-		mCleanCycleInterval{2.f}
+		mCleanCycleInterval{ 2.f }
 	{
 	}
 

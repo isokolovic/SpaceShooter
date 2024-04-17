@@ -34,7 +34,7 @@ namespace ss {
 
 	//Template function cannot be in .cpp file
 	template<typename WorldType>
-	weak<WorldType> Application::LoadWorld(){
+	weak<WorldType> Application::LoadWorld() {
 
 		//currentWorld represents a base class. 
 		//Returning a newWorld since type must be complied. Also, child type cannot hold a base type. 
