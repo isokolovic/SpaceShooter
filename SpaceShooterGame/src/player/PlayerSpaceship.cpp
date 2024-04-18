@@ -1,5 +1,6 @@
 #include "player/PlayerSpaceship.h"
 #include "SFML/System.hpp"
+#include "framework/MathUtility.h"
 
 namespace ss {
 
@@ -32,6 +33,14 @@ namespace ss {
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			mMoveInput.x = 1.f;
 		}
+
+		NormalizeInput();
+	}
+
+	void PlayerSpaceship::NormalizeInput()
+	{
+		Normalize(mMoveInput);
+		LOG("Move input is now: %f, %f", mMoveInput.x, mMoveInput.y);
 	}
 
 	void PlayerSpaceship::ConsumeInput(float deltaTime)
