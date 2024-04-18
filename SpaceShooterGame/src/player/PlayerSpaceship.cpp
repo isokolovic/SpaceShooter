@@ -41,7 +41,6 @@ namespace ss {
 	void PlayerSpaceship::NormalizeInput()
 	{
 		Normalize(mMoveInput);
-		LOG("Move input is now: %f, %f", mMoveInput.x, mMoveInput.y);
 	}
 
 	void PlayerSpaceship::ClampInputOnEdge()
