@@ -43,6 +43,11 @@ namespace ss {
 		}
 	}
 
+	sf::Vector2u Application::GetWindowSize() const
+	{
+		return mWindow.getSize();
+	}
+
 	void Application::TickInternal(float deltaTime)
 	{
 		//Execute Tick on the top level first then TickInternal of the currentWorld

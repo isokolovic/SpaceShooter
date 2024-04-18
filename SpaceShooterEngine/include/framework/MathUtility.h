@@ -27,8 +27,8 @@ namespace ss {
 		float vectorLength = GetVectorLength<T>(vector);
 		if (vectorLength == 0.f) return sf::Vector2<T>{};
 
-		ScaleVector(vector, 1.f/vectorLength);
-		
+		ScaleVector(vector, 1.f / vectorLength);
+
 		return vector;
 	}
 }

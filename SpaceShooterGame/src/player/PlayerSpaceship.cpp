@@ -34,6 +34,7 @@ namespace ss {
 			mMoveInput.x = 1.f;
 		}
 
+		ClampInputOnEdge();
 		NormalizeInput();
 	}
 
@@ -41,6 +42,27 @@ namespace ss {
 	{
 		Normalize(mMoveInput);
 		LOG("Move input is now: %f, %f", mMoveInput.x, mMoveInput.y);
+	}
+
+	void PlayerSpaceship::ClampInputOnEdge()
+	{
+		sf::Vector2f actorLocation = GetActorLocation();
+
+		if (actorLocation.x < 0 && mMoveInput.x == -1) {
+			mMoveInput.x = 0.f; //0.f = not being able to move
+		}
+
+		if (actorLocation.x > GetWindowSize().x && mMoveInput.x == 1.f) {
+			mMoveInput.x = 0.f;
+		}
+
+		if (actorLocation.y < 0 && mMoveInput.y == -1) {
+			mMoveInput.y = 0.f;
+		}
+
+		if (actorLocation.y > GetWindowSize().y && mMoveInput.y == 1.f) {
+			mMoveInput.y = 0.f;
+		}
 	}
 
 	void PlayerSpaceship::ConsumeInput(float deltaTime)
