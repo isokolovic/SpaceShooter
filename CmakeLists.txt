@@ -9,19 +9,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-#Allows fetching content from external source
-include(FetchContent)
-set(SFML_LIB_NAME SFML)
-
-FetchContent_Declare(
-	${SFML_LIB_NAME}
-	GIT_REPOSITORY https://github.com/SFML/SFML
-	GIT_TAG 2.5.1
-	GIT_SHALLOW FALSE #Just a shallow copy of repository (possibility repo is referencing another repo)
-)
-
-FetchContent_MakeAvailable(${SFML_LIB_NAME}) #Make it available to project(s)
-
 #Variable NAME Value
 set(SPACE_SHOOTER_ENGINE_TARGET_NAME SpaceShooterEngine)
 set(SPACE_SHOOTER_GAME_TARGET_NAME SpaceShooterGame)
