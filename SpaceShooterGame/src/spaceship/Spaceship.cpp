@@ -19,4 +19,8 @@ namespace ss {
 	{
 		mVelocity = newVelocity;
 	}
+
+	void Spaceship::Shoot()
+	{
+	}
 }
