@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/World.h"
 #include "framework/AssetManager.h"
+#include "framework/PhysicsSystem.h"
 
 namespace ss {
 
@@ -58,6 +59,8 @@ namespace ss {
 			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
 			currentWorld->TickInternal(deltaTime);
 		}
+
+		PhysicsSystem::Get().Step(deltaTime); //Physics system update
 
 		if (mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval) {
 			mCleanCycleClock.restart();

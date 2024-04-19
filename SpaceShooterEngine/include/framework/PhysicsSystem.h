@@ -4,17 +4,20 @@
 
 namespace ss {
 
+	class Actor;
 	class PhysicsSystem {
-
 	public:
-		static PhysicsSystem& Get(); 
-
+		static PhysicsSystem& Get();
+		void Step(float deltaTime); //Equivalent of Tick function
+		b2Body* AddListener(Actor* listener);
+		float GetPhysicsScale() const { return mPhysicsScale; }
 	protected:
 		PhysicsSystem();
-
 	private:
 		static unique<PhysicsSystem> mPhysicsSystem;
 		b2World mPhysicsWorld;
 		float mPhysicsScale;
+		int mVelocityIterations;
+		int mPositionIterations;
 	};
 }
