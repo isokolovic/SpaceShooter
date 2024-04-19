@@ -62,6 +62,10 @@ namespace ss {
 		if (mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval) {
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
+			
+			if (currentWorld) {
+				currentWorld->CleanCycle();
+			}
 		}
 	}
 

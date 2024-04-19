@@ -32,13 +32,8 @@ namespace ss {
 
 		//Make actors play at the begining of every tick
 		for (auto iter = mActors.begin(); iter != mActors.end();) {
-			if (iter->get()->IsPendingDestroy()) {
-				iter = mActors.erase(iter);//Removing from Actors vector (which were sent pending destroy in previous loop)
-			}
-			else {
-				iter->get()->TickInternal(deltaTime);
-				++iter; //If not pending dstroy, move to another one
-			}
+			iter->get()->TickInternal(deltaTime);
+			++iter;
 		}
 
 
@@ -63,6 +58,18 @@ namespace ss {
 	sf::Vector2u World::GetWindowSize() const
 	{
 		return mOwningApp->GetWindowSize();
+	}
+
+	void World::CleanCycle()
+	{
+		for (auto iter = mActors.begin(); iter != mActors.end();) {
+			if (iter->get()->IsPendingDestroy()) {
+				iter = mActors.erase(iter);//Removing from Actors vector (which were sent pending destroy in previous loop)
+			}
+			else {
+				++iter;
+			}
+		}
 	}
 
 	void World::BeginPlay()
