@@ -51,6 +51,10 @@ namespace ss {
 		return body;
 	}
 
+	void PhysicsSystem::RemoveListener(b2Body* bodyToRemove)
+	{
+	}
+
 	PhysicsSystem::PhysicsSystem()
 		: mPhysicsWorld{ b2Vec2{0.f, 0.f} },
 		mPhysicsScale{ 0.01f }, //Scaling meters to centimeters

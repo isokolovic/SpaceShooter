@@ -1,8 +1,10 @@
+#include <box2d/b2_body.h>
 #include "framework/Actor.h"
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
 #include "framework/World.h"
+#include "framework/PhysicsSystem.h"
 
 namespace ss {
 
@@ -10,7 +12,9 @@ namespace ss {
 		: mOwningWorld{ owningWorld },
 		mHasBeganPlay{ false },
 		mSprite{},
-		mTexture{}
+		mTexture{},
+		mPhysicsBody{nullptr},
+		mPhysicsEnabled{false}
 	{
 		SetTexture(texturePath);
 	}
@@ -125,7 +129,7 @@ namespace ss {
 
 		sf::Vector2f actorPos = GetActorLocation();
 
-		if (actorPos.x < -width){
+		if (actorPos.x < -width) {
 			return true;
 		}
 
@@ -140,8 +144,40 @@ namespace ss {
 		if (actorPos.y < -height + height) {
 			return true;
 		}
-		
+
 		return false;
+	}
+
+	void Actor::SetEnablePhysics(bool enable)
+	{
+		mPhysicsEnabled = enable;
+	}
+
+	void Actor::InitializePhysics()
+	{
+		if (!mPhysicsBody) {
+			mPhysicsBody = PhysicsSystem::Get().AddListener(this);
+		}
+	}
+
+	void Actor::UnInitializePhysics()
+	{
+		if (mPhysicsBody)
+		{
+			PhysicsSystem::Get().RemoveListener(mPhysicsBody);
+		}
+	}
+
+	void Actor::UpdatePhysicsBodyTransform()
+	{
+		if (mPhysicsBody)
+		{
+			float physicsScale = PhysicsSystem::Get().GetPhysicsScale();
+			b2Vec2 position{ GetActorLocation().x * physicsScale, GetActorLocation().y * physicsScale };
+			float rotation = DegreesToRatians(GetActorRotation());
+
+			mPhysicsBody->SetTransform(position, rotation);
+		}
 	}
 
 	void Actor::CenterPivot()

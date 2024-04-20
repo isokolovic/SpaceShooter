@@ -4,10 +4,11 @@
 #include "framework/Object.h"
 #include "framework/Core.h"
 
+class b2Body;
+
 namespace ss {
 
 	class World;
-
 	class Actor : public Object
 	{
 
@@ -38,7 +39,12 @@ namespace ss {
 		World* GetWorld() const { return mOwningWorld; }
 
 		bool IsActorOutOfWindowBounds() const;
+
+		void SetEnablePhysics(bool enable);
 	private:
+		void InitializePhysics();
+		void UnInitializePhysics();
+		void UpdatePhysicsBodyTransform();
 		void CenterPivot();
 
 		World* mOwningWorld;
@@ -46,5 +52,8 @@ namespace ss {
 
 		sf::Sprite mSprite;
 		shared<sf::Texture> mTexture;
+
+		b2Body* mPhysicsBody;
+		bool mPhysicsEnabled;
 	};
 }
