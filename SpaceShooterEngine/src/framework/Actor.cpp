@@ -13,8 +13,8 @@ namespace ss {
 		mHasBeganPlay{ false },
 		mSprite{},
 		mTexture{},
-		mPhysicsBody{nullptr},
-		mPhysicsEnabled{false}
+		mPhysicsBody{ nullptr },
+		mPhysicsEnabled{ false }
 	{
 		SetTexture(texturePath);
 	}
@@ -72,11 +72,13 @@ namespace ss {
 	void Actor::SetActorLocation(const sf::Vector2f& newLoc)
 	{
 		mSprite.setPosition(newLoc);
+		UpdatePhysicsBodyTransform();
 	}
 
 	void Actor::SetActorRotation(float newRot)
 	{
 		mSprite.setRotation(newRot);
+		UpdatePhysicsBodyTransform();
 	}
 
 	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
@@ -107,6 +109,16 @@ namespace ss {
 	sf::Vector2f Actor::GetActorRightDirection() const
 	{
 		return RotationToVector(GetActorRotation() + 90.f);
+	}
+
+	void Actor::OnActorBeginOverlap(Actor* other) 
+	{
+		LOG("Overlapped.");
+	}
+
+	void Actor::OnActorEndOverlap(Actor* other)
+	{
+		LOG("Overlap finished.");
 	}
 
 	sf::FloatRect Actor::GetActorGlobalBounds() const
@@ -151,6 +163,14 @@ namespace ss {
 	void Actor::SetEnablePhysics(bool enable)
 	{
 		mPhysicsEnabled = enable;
+		if (mPhysicsEnabled)
+		{
+			InitializePhysics();
+		}
+		else
+		{
+			UnInitializePhysics();
+		}
 	}
 
 	void Actor::InitializePhysics()

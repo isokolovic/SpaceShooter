@@ -5,6 +5,12 @@
 namespace ss {
 
 	class Actor;
+
+	class PhysicsContactListener : public b2ContactListener {
+		virtual void BeginContact(b2Contact* contact) override;
+		virtual void EndContact(b2Contact* contact) override;
+	};
+
 	class PhysicsSystem {
 	public:
 		static PhysicsSystem& Get();
@@ -20,5 +26,6 @@ namespace ss {
 		float mPhysicsScale;
 		int mVelocityIterations;
 		int mPositionIterations;
+		PhysicsContactListener mContactListener;
 	};
 }

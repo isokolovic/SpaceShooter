@@ -1,4 +1,5 @@
 #include <box2d/b2_body.h>
+#include <box2d/b2_contact.h>
 #include <box2d/b2_fixture.h>
 #include <box2d/b2_polygon_shape.h>
 #include "framework/PhysicsSystem.h"
@@ -59,7 +60,48 @@ namespace ss {
 		: mPhysicsWorld{ b2Vec2{0.f, 0.f} },
 		mPhysicsScale{ 0.01f }, //Scaling meters to centimeters
 		mVelocityIterations{ 8 }, //Values source: box2d documentation
-		mPositionIterations{ 3 }
+		mPositionIterations{ 3 },
+		mContactListener{}
 	{
+		mPhysicsWorld.SetContactListener(&mContactListener);
+		mPhysicsWorld.SetAllowSleeping(false); //Without this only in when Step() function Physics events will be triggered
+	}
+
+	void PhysicsContactListener::BeginContact(b2Contact* contact)
+	{
+		Actor* ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+		Actor* ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+		if (ActorA && !ActorA->IsPendingDestroy()) {
+			ActorA->OnActorBeginOverlap(ActorB);
+		}
+		if (ActorB && !ActorB->IsPendingDestroy()) {
+			ActorB->OnActorBeginOverlap(ActorA);
+		}
+
+	}
+
+	void PhysicsContactListener::EndContact(b2Contact* contact)
+	{
+		Actor* ActorA = nullptr;
+		Actor* ActorB = nullptr;
+
+		if (contact->GetFixtureA() && contact->GetFixtureA()->GetBody()) 
+		{
+			ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+		}
+		if (contact->GetFixtureB() && contact->GetFixtureB()->GetBody())
+		{
+			ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+		}
+
+		if (ActorA && !ActorA->IsPendingDestroy())
+		{
+			ActorA->OnActorEndOverlap(ActorB);
+		}
+		if (ActorB && !ActorB->IsPendingDestroy())
+		{
+			ActorB->OnActorEndOverlap(ActorA);
+		}
 	}
 }

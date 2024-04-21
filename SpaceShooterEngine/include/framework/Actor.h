@@ -41,6 +41,8 @@ namespace ss {
 		bool IsActorOutOfWindowBounds() const;
 
 		void SetEnablePhysics(bool enable);
+		virtual void OnActorBeginOverlap(Actor* other);
+		virtual void OnActorEndOverlap(Actor* other);
 	private:
 		void InitializePhysics();
 		void UnInitializePhysics();
