@@ -111,7 +111,7 @@ namespace ss {
 		return RotationToVector(GetActorRotation() + 90.f);
 	}
 
-	void Actor::OnActorBeginOverlap(Actor* other) 
+	void Actor::OnActorBeginOverlap(Actor* other)
 	{
 		LOG("Overlapped.");
 	}
@@ -119,6 +119,12 @@ namespace ss {
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
 		LOG("Overlap finished.");
+	}
+
+	void Actor::Destroy()
+	{
+		UnInitializePhysics();
+		Object::Destroy();
 	}
 
 	sf::FloatRect Actor::GetActorGlobalBounds() const
@@ -175,7 +181,8 @@ namespace ss {
 
 	void Actor::InitializePhysics()
 	{
-		if (!mPhysicsBody) {
+		if (!mPhysicsBody)
+		{
 			mPhysicsBody = PhysicsSystem::Get().AddListener(this);
 		}
 	}
@@ -185,6 +192,7 @@ namespace ss {
 		if (mPhysicsBody)
 		{
 			PhysicsSystem::Get().RemoveListener(mPhysicsBody);
+			mPhysicsBody = nullptr;
 		}
 	}
 

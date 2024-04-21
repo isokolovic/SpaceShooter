@@ -21,6 +21,7 @@ namespace ss {
 
 	void PhysicsSystem::Step(float deltaTime)
 	{
+		ProcessPendingRemoveListeners();
 		mPhysicsWorld.Step(deltaTime, mVelocityIterations, mPositionIterations);
 	}
 
@@ -54,6 +55,12 @@ namespace ss {
 
 	void PhysicsSystem::RemoveListener(b2Body* bodyToRemove)
 	{
+		mPendingRemoveListeners.insert(bodyToRemove);
+	}
+
+	void PhysicsSystem::Cleanup()
+	{
+		mPhysicsSystem = std::move(unique<PhysicsSystem>{new PhysicsSystem}); //Re-create Physics system
 	}
 
 	PhysicsSystem::PhysicsSystem()
@@ -61,10 +68,21 @@ namespace ss {
 		mPhysicsScale{ 0.01f }, //Scaling meters to centimeters
 		mVelocityIterations{ 8 }, //Values source: box2d documentation
 		mPositionIterations{ 3 },
-		mContactListener{}
+		mContactListener{},
+		mPendingRemoveListeners{}
 	{
 		mPhysicsWorld.SetContactListener(&mContactListener);
 		mPhysicsWorld.SetAllowSleeping(false); //Without this only in when Step() function Physics events will be triggered
+	}
+
+	void PhysicsSystem::ProcessPendingRemoveListeners()
+	{
+		for (auto listener : mPendingRemoveListeners) 
+		{
+			mPhysicsWorld.DestroyBody(listener);
+		}
+
+		mPendingRemoveListeners.clear();
 	}
 
 	void PhysicsContactListener::BeginContact(b2Contact* contact)

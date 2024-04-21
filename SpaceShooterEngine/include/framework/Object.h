@@ -8,9 +8,8 @@ namespace ss {
 		Object();
 		virtual ~Object();
 
-		void Destroy();
+		virtual void Destroy();
 		bool IsPendingDestroy() const { return mIsPendingDestroy; }
-
 	private:
 		bool mIsPendingDestroy; // Pending: will be destroyed in the next loop 
 	};

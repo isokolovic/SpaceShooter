@@ -1,9 +1,9 @@
 #pragma once
-
 #include <stdio.h>
 #include <memory>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace ss {
 
@@ -27,7 +27,9 @@ namespace ss {
 	template<typename keyType, typename valType, typename Hasher = std::hash <keyType>>
 	using Dictionary = std::unordered_map<keyType, valType, Hasher>;
 
+	template<typename T>
+	using Set = std::unordered_set<T>;
 
-	//Macro for logging the frame rate
-#define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
+	//Console logging macro
+	#define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
 }

@@ -27,6 +27,8 @@ namespace ss {
 		weak<Spaceship> testSpaceShip = newWorld.lock()->SpawnActor<Spaceship>();
 		testSpaceShip.lock()->SetTexture("/SpaceShooterRedux/PNG/playerShip1_blue.png");
 		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
+
+		counter = 0.f;
 	}
 
 	void GameApplication::Tick(float deltaTime)
@@ -37,5 +39,13 @@ namespace ss {
 		//		actorToDestroy.lock()->Destroy();
 		//	}
 		//}
+		counter += deltaTime;
+		if (counter > 10.f) 
+		{
+			if(!testPlayerSpaceship.expired())
+			{
+				testPlayerSpaceship.lock()->Destroy();
+			}
+		}
 	}
 }
