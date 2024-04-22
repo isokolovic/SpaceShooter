@@ -27,7 +27,7 @@ namespace ss {
 		weak<Spaceship> testSpaceShip = newWorld.lock()->SpawnActor<Spaceship>();
 		testSpaceShip.lock()->SetTexture("/SpaceShooterRedux/PNG/playerShip1_blue.png");
 		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
-		testPlayerSpaceship.lock()->SetTeamID(2);
+		testSpaceShip.lock()->SetTeamID(2);
 
 		counter = 0.f;
 	}
