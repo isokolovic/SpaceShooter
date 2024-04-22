@@ -6,15 +6,16 @@
 #include "framework/World.h"
 #include "framework/PhysicsSystem.h"
 
-namespace ss {
-
+namespace ss 
+{
 	Actor::Actor(World* owningWorld, const std::string& texturePath)
 		: mOwningWorld{ owningWorld },
 		mHasBeganPlay{ false },
 		mSprite{},
 		mTexture{},
 		mPhysicsBody{ nullptr },
-		mPhysicsEnabled{ false }
+		mPhysicsEnabled{ false },
+		mTeamID{ GetNeutralTeamID() }
 	{
 		SetTexture(texturePath);
 	}
@@ -34,7 +35,8 @@ namespace ss {
 
 	void Actor::TickInternal(float deltaTime)
 	{
-		if (!IsPendingDestroy()) {
+		if (!IsPendingDestroy()) 
+		{
 			Tick(deltaTime);
 		}
 	}
@@ -113,12 +115,12 @@ namespace ss {
 
 	void Actor::OnActorBeginOverlap(Actor* other)
 	{
-		LOG("Overlapped.");
+		LOG("Overlapped (from Actor.cpp).");
 	}
 
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
-		LOG("Overlap finished.");
+		LOG("Overlap finished (from Actor.cpp).");
 	}
 
 	void Actor::Destroy()
@@ -169,6 +171,7 @@ namespace ss {
 	void Actor::SetEnablePhysics(bool enable)
 	{
 		mPhysicsEnabled = enable;
+
 		if (mPhysicsEnabled)
 		{
 			InitializePhysics();
@@ -177,6 +180,16 @@ namespace ss {
 		{
 			UnInitializePhysics();
 		}
+	}
+
+	bool Actor::IsOtherHostile(Actor* other) const
+	{
+		if (GetTeamID() == GetNeutralTeamID() || other->GetTeamID() == GetNeutralTeamID()) //If any object is neutral
+		{
+			return false;
+		}
+
+		return GetTeamID() != other->GetTeamID();
 	}
 
 	void Actor::InitializePhysics()
@@ -194,6 +207,8 @@ namespace ss {
 			PhysicsSystem::Get().RemoveListener(mPhysicsBody);
 			mPhysicsBody = nullptr;
 		}
+
+		LOG("Physics uninitialized. ");
 	}
 
 	void Actor::UpdatePhysicsBodyTransform()
@@ -212,5 +227,9 @@ namespace ss {
 	{
 		sf::FloatRect bound = mSprite.getGlobalBounds();
 		mSprite.setOrigin(bound.width / 2.f, bound.height / 2.f);
+	}
+
+	void Actor::ApplyDamage(float amt)
+	{
 	}
 }

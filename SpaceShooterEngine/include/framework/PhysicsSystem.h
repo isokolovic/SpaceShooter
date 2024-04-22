@@ -6,12 +6,14 @@ namespace ss {
 
 	class Actor;
 
-	class PhysicsContactListener : public b2ContactListener {
+	class PhysicsContactListener : public b2ContactListener
+	{
 		virtual void BeginContact(b2Contact* contact) override;
 		virtual void EndContact(b2Contact* contact) override;
 	};
 
-	class PhysicsSystem {
+	class PhysicsSystem
+	{
 	public:
 		static PhysicsSystem& Get();
 		void Step(float deltaTime); //Equivalent of Tick function
@@ -25,6 +27,7 @@ namespace ss {
 		PhysicsSystem();
 	private:
 		void ProcessPendingRemoveListeners();
+
 		static unique<PhysicsSystem> mPhysicsSystem;
 		b2World mPhysicsWorld;
 		float mPhysicsScale;

@@ -5,9 +5,9 @@ namespace ss {
 	class Actor;
 
 	class Shooter {
-
 	public:
 		void Shoot();
+
 		virtual bool CanShoot() const { return true; }
 		virtual bool IsOnCooldown() const { return false; }
 		Actor* GetOwner() const { return mOwner; }

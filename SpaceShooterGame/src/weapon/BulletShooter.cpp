@@ -3,7 +3,8 @@
 #include "weapon/Bullet.h"
 #include "framework/World.h"
 
-namespace ss {
+namespace ss
+{
 	BulletShooter::BulletShooter(Actor* owner, float cooldownTime)
 		:Shooter{ owner },
 		mCooldownClock{},
@@ -13,7 +14,8 @@ namespace ss {
 
 	bool BulletShooter::IsOnCooldown() const
 	{
-		if (mCooldownClock.getElapsedTime().asSeconds() > mCooldownTime) {
+		if (mCooldownClock.getElapsedTime().asSeconds() > mCooldownTime)
+		{
 			return false;
 		}
 		return true;
@@ -22,6 +24,7 @@ namespace ss {
 	void BulletShooter::ShootImpl()
 	{
 		mCooldownClock.restart();
+
 		weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(), "SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
 		newBullet.lock()->SetActorLocation(GetOwner()->GetActorLocation());
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation());

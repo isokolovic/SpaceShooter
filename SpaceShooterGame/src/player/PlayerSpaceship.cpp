@@ -11,6 +11,7 @@ namespace ss {
 		mSpeed{ 200.f },
 		mShooter{ new BulletShooter{this, 0.1f} }
 	{
+		SetTeamID(1);
 	}
 
 	void PlayerSpaceship::Tick(float deltaTime)
@@ -22,31 +23,37 @@ namespace ss {
 
 	void PlayerSpaceship::Shoot()
 	{
-		if (mShooter) {
+		if (mShooter)
+		{
 			mShooter->Shoot();
 		}
 	}
 
 	void PlayerSpaceship::HandleInput()
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
 			mMoveInput.y = -1.f;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
 			mMoveInput.y = 1.f;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
 			mMoveInput.x = -1.f;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
 			mMoveInput.x = 1.f;
 		}
 
 		ClampInputOnEdge();
 		NormalizeInput();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
 			Shoot();
 		}
 	}
@@ -60,19 +67,23 @@ namespace ss {
 	{
 		sf::Vector2f actorLocation = GetActorLocation();
 
-		if (actorLocation.x < 0 && mMoveInput.x == -1) {
+		if (actorLocation.x < 0 && mMoveInput.x == -1)
+		{
 			mMoveInput.x = 0.f; //0.f = not being able to move
 		}
 
-		if (actorLocation.x > GetWindowSize().x && mMoveInput.x == 1.f) {
+		if (actorLocation.x > GetWindowSize().x && mMoveInput.x == 1.f)
+		{
 			mMoveInput.x = 0.f;
 		}
 
-		if (actorLocation.y < 0 && mMoveInput.y == -1) {
+		if (actorLocation.y < 0 && mMoveInput.y == -1)
+		{
 			mMoveInput.y = 0.f;
 		}
 
-		if (actorLocation.y > GetWindowSize().y && mMoveInput.y == 1.f) {
+		if (actorLocation.y > GetWindowSize().y && mMoveInput.y == 1.f)
+		{
 			mMoveInput.y = 0.f;
 		}
 	}

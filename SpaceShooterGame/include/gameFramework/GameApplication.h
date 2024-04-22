@@ -2,12 +2,13 @@
 #include <framework/Application.h>
 #include <framework/Core.h>
 
-namespace ss {
-
+namespace ss
+{
 	class Actor;
 	class PlayerSpaceship;
-	class GameApplication : public Application {
 
+	class GameApplication : public Application
+	{
 	public:
 		GameApplication();
 		virtual void Tick(float deltaTime) override;

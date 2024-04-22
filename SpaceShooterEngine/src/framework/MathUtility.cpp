@@ -1,7 +1,7 @@
 #include "framework/MathUtility.h"
 
-namespace ss {
-
+namespace ss
+{
 	const float PI = 3.1415926535;
 
 	sf::Vector2f RotationToVector(float rotation)

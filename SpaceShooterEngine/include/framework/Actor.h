@@ -1,17 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
 #include "framework/Object.h"
 #include "framework/Core.h"
 
 class b2Body;
 
-namespace ss {
-
+namespace ss
+{
 	class World;
+
 	class Actor : public Object
 	{
-
 	public:
 		Actor(World* owningWorld, const std::string& texturePath = "");
 		virtual ~Actor();
@@ -45,6 +44,13 @@ namespace ss {
 		virtual void OnActorEndOverlap(Actor* other);
 
 		virtual void Destroy() override;
+
+		void SetTeamID(uint8 teamID) { mTeamID = teamID; }
+		static uint8 GetNeutralTeamID() { return neutralTeamID; }
+		uint8 GetTeamID() const { return mTeamID; }
+		bool IsOtherHostile(Actor* other) const;
+
+		virtual void ApplyDamage(float amt);
 	private:
 		void InitializePhysics();
 		void UnInitializePhysics();
@@ -59,5 +65,8 @@ namespace ss {
 
 		b2Body* mPhysicsBody;
 		bool mPhysicsEnabled;
+
+		uint8 mTeamID;
+		const static uint8 neutralTeamID = 255;
 	};
 }

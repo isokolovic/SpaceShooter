@@ -23,7 +23,8 @@ namespace ss {
 	void World::TickInternal(float deltaTime)
 	{
 		//Get pending actors in actors at the begining of every tick, and make them play. 
-		for (shared<Actor> actor : mPendingActors) {
+		for (shared<Actor> actor : mPendingActors) 
+		{
 			mActors.push_back(actor);
 			actor->BeginPlayInternal();
 		}
@@ -31,13 +32,14 @@ namespace ss {
 		mPendingActors.clear();
 
 		//Make actors play at the begining of every tick
-		for (auto iter = mActors.begin(); iter != mActors.end();) {
+		for (auto iter = mActors.begin(); iter != mActors.end();) 
+		{
 			iter->get()->TickInternal(deltaTime);
 			++iter;
 		}
 
-
-		for (shared<Actor> actor : mActors) {
+		for (shared<Actor> actor : mActors) 
+		{
 			actor->Tick(deltaTime);
 		}
 
@@ -62,11 +64,14 @@ namespace ss {
 
 	void World::CleanCycle()
 	{
-		for (auto iter = mActors.begin(); iter != mActors.end();) {
-			if (iter->get()->IsPendingDestroy()) {
+		for (auto iter = mActors.begin(); iter != mActors.end();)
+		{
+			if (iter->get()->IsPendingDestroy())
+			{
 				iter = mActors.erase(iter);//Removing from Actors vector (which were sent pending destroy in previous loop)
 			}
-			else {
+			else
+			{
 				++iter;
 			}
 		}

@@ -30,6 +30,8 @@ namespace ss {
 	template<typename T>
 	using Set = std::unordered_set<T>;
 
+	using uint8 = unsigned char; //Strange, but used for teamIDs to consume less memory (256 teams is enough)
+
 	//Console logging macro
 	#define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
 }

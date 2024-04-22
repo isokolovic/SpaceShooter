@@ -1,8 +1,8 @@
 #include "framework/Object.h"
 #include "framework/Core.h"
 
-namespace ss {
-
+namespace ss
+{
 	ss::Object::Object()
 		:mIsPendingDestroy{ false }
 	{

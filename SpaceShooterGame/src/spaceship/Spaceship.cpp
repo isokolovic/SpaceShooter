@@ -31,12 +31,30 @@ namespace ss {
 		SetEnablePhysics(true);
 
 		mHealthComponent.onHealthChanged.BindAction(GetWeakRef(), &Spaceship::OnHealthChanged);
+		mHealthComponent.onTakenDamage.BindAction(GetWeakRef(), &Spaceship::OnTakenDamage);
+		mHealthComponent.onHealthEmpty.BindAction(GetWeakRef(), &Spaceship::BlowUp);
 
-		mHealthComponent.onHealthChanged.Broadcast(11, 89, 100);
+		//mHealthComponent.onHealthChanged.Broadcast(11, 89, 100);
+	}
+
+	void Spaceship::ApplyDamage(float amt)
+	{
+		mHealthComponent.ChangeHealth(-amt);
+		LOG("Dealt %f damage", amt);
 	}
 
 	void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
 	{
-		LOG("Health changed by %f, and is now amount: %f/%f", amt, health, maxHealth);
+		LOG("Health changed by %f, and now is %f/%f", amt, health, maxHealth);
+	}
+
+	void Spaceship::OnTakenDamage(float amt, float health, float maxHealth)
+	{
+		LOG("Taken %f damage, now health is %f/%f", amt, health, maxHealth);
+	}
+
+	void Spaceship::BlowUp()
+	{
+		Destroy();
 	}
 }

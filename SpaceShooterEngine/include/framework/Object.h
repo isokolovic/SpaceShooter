@@ -3,8 +3,8 @@
 #include "framework/Core.h"
 #include "framework/Delegate.h"
 
-namespace ss {
-
+namespace ss
+{
 	class Object : public std::enable_shared_from_this<Object>
 	{
 	public:
@@ -14,11 +14,12 @@ namespace ss {
 		virtual void Destroy();
 		bool IsPendingDestroy() const { return mIsPendingDestroy; }
 
+		//For Objects to be able to provide weak reference of themselves
 		weak<Object> GetWeakRef();
 		weak<const Object> GetWeakRef() const;
 
 		Delegate<Object*> onDestroy;
 	private:
-		bool mIsPendingDestroy; // Pending: will be destroyed in the next loop 
+		bool mIsPendingDestroy; //Pending: will be destroyed in the next loop 
 	};
 }

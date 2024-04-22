@@ -23,11 +23,14 @@ namespace ss {
 		float targetDeltaTime = 1.f / mTargetFrameRate;
 
 		//If Event is close, close the window
-		while (mWindow.isOpen()) {
+		while (mWindow.isOpen())
+		{
 			sf::Event windowEvent;
 
-			while (mWindow.pollEvent(windowEvent)) {
-				if (windowEvent.type == sf::Event::EventType::Closed()) {
+			while (mWindow.pollEvent(windowEvent))
+			{
+				if (windowEvent.type == sf::Event::EventType::Closed())
+				{
 					mWindow.close();
 				}
 			}
@@ -55,18 +58,21 @@ namespace ss {
 		//First tick if player input, after what game logic is updated
 		Tick(deltaTime);
 
-		if (currentWorld) {
+		if (currentWorld)
+		{
 			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
 			currentWorld->TickInternal(deltaTime);
 		}
 
 		PhysicsSystem::Get().Step(deltaTime); //Physics system update
 
-		if (mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval) {
+		if (mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval)
+		{
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
-			
-			if (currentWorld) {
+
+			if (currentWorld)
+			{
 				currentWorld->CleanCycle();
 			}
 		}
@@ -83,7 +89,8 @@ namespace ss {
 
 	void Application::Render()
 	{
-		if (currentWorld) {
+		if (currentWorld) 
+		{
 			currentWorld->Render(mWindow);
 		}
 	}

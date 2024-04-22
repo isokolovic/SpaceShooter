@@ -2,14 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include "framework/Core.h"
 
-namespace ss {
-
+namespace ss
+{
 	class Actor;
-
 	class Application;
 
-	class World {
-
+	class World
+	{
 	public:
 		World(Application* owningApp);
 
@@ -19,7 +18,7 @@ namespace ss {
 
 		virtual ~World();
 
-		template<typename ActorType, typename...Args>
+		template<typename ActorType, typename... Args>
 		weak<ActorType> SpawnActor(Args... args);
 
 		sf::Vector2u GetWindowSize() const;
@@ -35,12 +34,11 @@ namespace ss {
 		List<shared<Actor>> mPendingActors;
 	};
 
-
-	template<typename ActorType, typename...Args>
+	template<typename ActorType, typename... Args>
 	weak<ActorType> World::SpawnActor(Args... args)
 	{
-		shared<ActorType> newActor{ new ActorType(this, args...) }; 
+		shared<ActorType> newActor{ new ActorType(this, args...) };
 		mPendingActors.push_back(newActor);
 		return newActor;
-	};	
+	};
 }

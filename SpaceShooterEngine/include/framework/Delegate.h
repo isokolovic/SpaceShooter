@@ -2,16 +2,16 @@
 #include <functional>
 #include "framework/Core.h"
 
-namespace ss {
-
+namespace ss
+{
 	class Object;
 
 	template<typename... Args>
-	class Delegate {
-
+	class Delegate
+	{
 	public:
 		template<typename ClassName>
-		void BindAction(weak<Object> obj, void(ClassName::* callback)(Args... args))
+		void BindAction(weak<Object> obj, void(ClassName::* callback)(Args...))
 		{
 			std::function<bool(Args...)> callbackFunc = [obj, callback](Args... args)->bool
 				{

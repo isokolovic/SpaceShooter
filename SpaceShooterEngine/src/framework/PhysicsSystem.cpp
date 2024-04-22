@@ -6,13 +6,14 @@
 #include "framework/Actor.h"
 #include "framework/MathUtility.h"
 
-namespace ss {
-
+namespace ss
+{
 	unique<PhysicsSystem> PhysicsSystem::mPhysicsSystem{ nullptr };
 
 	PhysicsSystem& PhysicsSystem::Get()
 	{
-		if (!mPhysicsSystem) {
+		if (!mPhysicsSystem)
+		{
 			mPhysicsSystem = std::move(unique<PhysicsSystem>{new PhysicsSystem});
 		}
 
@@ -77,7 +78,7 @@ namespace ss {
 
 	void PhysicsSystem::ProcessPendingRemoveListeners()
 	{
-		for (auto listener : mPendingRemoveListeners) 
+		for (auto listener : mPendingRemoveListeners)
 		{
 			mPhysicsWorld.DestroyBody(listener);
 		}
@@ -87,24 +88,29 @@ namespace ss {
 
 	void PhysicsContactListener::BeginContact(b2Contact* contact)
 	{
+		LOG("Contact (from PhysicsSystem)");
+
 		Actor* ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
 		Actor* ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
 
-		if (ActorA && !ActorA->IsPendingDestroy()) {
+		if (ActorA && !ActorA->IsPendingDestroy())
+		{
 			ActorA->OnActorBeginOverlap(ActorB);
 		}
-		if (ActorB && !ActorB->IsPendingDestroy()) {
+		if (ActorB && !ActorB->IsPendingDestroy())
+		{
 			ActorB->OnActorBeginOverlap(ActorA);
 		}
-
 	}
 
 	void PhysicsContactListener::EndContact(b2Contact* contact)
 	{
+		LOG("End contact (from PhysicsSystem)");
+
 		Actor* ActorA = nullptr;
 		Actor* ActorB = nullptr;
 
-		if (contact->GetFixtureA() && contact->GetFixtureA()->GetBody()) 
+		if (contact->GetFixtureA() && contact->GetFixtureA()->GetBody())
 		{
 			ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
 		}

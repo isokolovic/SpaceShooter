@@ -1,13 +1,15 @@
 #include "weapon/Bullet.h"
 
-namespace ss {
-
+namespace ss
+{
 	Bullet::Bullet(World* world, Actor* owner, const std::string& texturePath, float speed, float damage)
-		: Actor{world, texturePath},
-		mOwner{owner},
-		mSpeed{speed},
-		mDamage{damage}
+		: Actor{ world, texturePath },
+		mOwner{ owner },
+		mSpeed{ speed },
+		mDamage{ damage }
 	{
+		SetTeamID(owner->GetTeamID());
+		//SetTeamID(1);
 	}
 
 	void Bullet::SetSpeed(float newSpeed)
@@ -25,7 +27,8 @@ namespace ss {
 		Actor::Tick(deltaTime);
 		Move(deltaTime);
 
-		if (IsActorOutOfWindowBounds()) {
+		if (IsActorOutOfWindowBounds())
+		{
 			Destroy();
 		}
 	}
@@ -39,5 +42,14 @@ namespace ss {
 	void Bullet::Move(float deltaTime)
 	{
 		AddActorLocationOffset(GetActorForwardDirection() * mSpeed * deltaTime);
+	}
+
+	void Bullet::OnActorBeginOverlap(Actor* other)
+	{
+		if (IsOtherHostile(other))
+		{
+			other->ApplyDamage(GetDamage());
+			Destroy();
+		}
 	}
 }
