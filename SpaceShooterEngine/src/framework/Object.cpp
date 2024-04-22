@@ -15,6 +15,7 @@ namespace ss {
 
 	void Object::Destroy()
 	{
+		onDestroy.Broadcast(this);
 		mIsPendingDestroy = true;
 	}
 

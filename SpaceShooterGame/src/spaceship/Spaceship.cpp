@@ -31,10 +31,12 @@ namespace ss {
 		SetEnablePhysics(true);
 
 		mHealthComponent.onHealthChanged.BindAction(GetWeakRef(), &Spaceship::OnHealthChanged);
+
+		mHealthComponent.onHealthChanged.Broadcast(11, 89, 100);
 	}
 
 	void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
 	{
-
+		LOG("Health changed by %f, and is now amount: %f/%f", amt, health, maxHealth);
 	}
 }
