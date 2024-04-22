@@ -1,4 +1,5 @@
 #include "spaceship/Spaceship.h"
+#include <functional>
 
 namespace ss {
 

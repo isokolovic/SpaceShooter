@@ -17,4 +17,14 @@ namespace ss {
 	{
 		mIsPendingDestroy = true;
 	}
+
+	weak<Object> Object::GetWeakRef()
+	{
+		return weak_from_this();
+	}
+
+	weak<const Object> Object::GetWeakRef() const
+	{
+		return weak_from_this();
+	}
 }
