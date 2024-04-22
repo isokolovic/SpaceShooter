@@ -88,8 +88,6 @@ namespace ss
 
 	void PhysicsContactListener::BeginContact(b2Contact* contact)
 	{
-		LOG("Contact (from PhysicsSystem)");
-
 		Actor* ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
 		Actor* ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
 
@@ -105,8 +103,6 @@ namespace ss
 
 	void PhysicsContactListener::EndContact(b2Contact* contact)
 	{
-		LOG("End contact (from PhysicsSystem)");
-
 		Actor* ActorA = nullptr;
 		Actor* ActorB = nullptr;
 

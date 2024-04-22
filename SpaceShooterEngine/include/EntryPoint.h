@@ -1,7 +1,7 @@
 #pragma once
 
-namespace ss {
-
+namespace ss
+{
 	class Application;
 }
 

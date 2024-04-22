@@ -6,7 +6,7 @@
 #include "framework/World.h"
 #include "framework/PhysicsSystem.h"
 
-namespace ss 
+namespace ss
 {
 	Actor::Actor(World* owningWorld, const std::string& texturePath)
 		: mOwningWorld{ owningWorld },
@@ -22,7 +22,6 @@ namespace ss
 
 	Actor::~Actor()
 	{
-		LOG("Actor destroyed.");
 	}
 
 	void Actor::BeginPlayInternal()
@@ -35,7 +34,7 @@ namespace ss
 
 	void Actor::TickInternal(float deltaTime)
 	{
-		if (!IsPendingDestroy()) 
+		if (!IsPendingDestroy())
 		{
 			Tick(deltaTime);
 		}
@@ -43,12 +42,10 @@ namespace ss
 
 	void Actor::BeginPlay()
 	{
-		//LOG("Actor began playing. ");
 	}
 
 	void Actor::Tick(float deltaTime)
 	{
-		//LOG("Actor ticking. ");
 	}
 
 	void Actor::SetTexture(const std::string& texturePath)
@@ -115,12 +112,10 @@ namespace ss
 
 	void Actor::OnActorBeginOverlap(Actor* other)
 	{
-		LOG("Overlapped (from Actor.cpp).");
 	}
 
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
-		LOG("Overlap finished (from Actor.cpp).");
 	}
 
 	void Actor::Destroy()
@@ -207,8 +202,6 @@ namespace ss
 			PhysicsSystem::Get().RemoveListener(mPhysicsBody);
 			mPhysicsBody = nullptr;
 		}
-
-		LOG("Physics uninitialized. ");
 	}
 
 	void Actor::UpdatePhysicsBodyTransform()

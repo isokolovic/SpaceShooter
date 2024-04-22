@@ -5,8 +5,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace ss {
-
+namespace ss
+{
 	//Define smart pointers:
 	template<typename T>
 	using unique = std::unique_ptr<T>;
@@ -33,5 +33,5 @@ namespace ss {
 	using uint8 = unsigned char; //Strange, but used for teamIDs to consume less memory (256 teams is enough)
 
 	//Console logging macro
-	#define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
+#define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
 }

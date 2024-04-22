@@ -5,12 +5,13 @@
 #include "framework/AssetManager.h"
 #include "player/PlayerSpaceship.h"
 
-ss::Application* GetApplication() {
-
+ss::Application* GetApplication()
+{
 	return new ss::GameApplication{};
 }
 
-namespace ss {
+namespace ss
+{
 	GameApplication::GameApplication()
 		: Application(600, 800, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
 	{
@@ -34,21 +35,6 @@ namespace ss {
 
 	void GameApplication::Tick(float deltaTime)
 	{
-		//counter += deltaTime;
-		//if (counter > 2.f) { //Test: after 2 sec. destroy an actor
-		//	if (!actorToDestroy.expired()) {
-		//		actorToDestroy.lock()->Destroy();
-		//	}
-		//}
-
 		counter += deltaTime;
-
-		//if (counter > 10.f) 
-		//{
-		//	if(!testPlayerSpaceship.expired())
-		//	{
-		//		testPlayerSpaceship.lock()->Destroy();
-		//	}
-		//}
 	}
 }

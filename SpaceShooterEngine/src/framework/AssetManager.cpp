@@ -1,7 +1,7 @@
 #include "framework/AssetManager.h"
 
-namespace ss {
-
+namespace ss
+{
 	unique<AssetManager> AssetManager::assetManager{ nullptr };
 
 	AssetManager& AssetManager::Get()

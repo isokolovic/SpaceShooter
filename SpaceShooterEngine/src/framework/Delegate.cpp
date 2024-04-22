@@ -1,5 +1,5 @@
 #include "framework/Delegate.h"
 
-namespace ss {
-
+namespace ss
+{
 }

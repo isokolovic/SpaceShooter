@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "framework/Core.h"
 
-namespace ss {
-
-	class AssetManager {
-
+namespace ss
+{
+	class AssetManager
+	{
 	public:
 		static AssetManager& Get();
 		shared<sf::Texture> LoadTexture(const std::string& path);

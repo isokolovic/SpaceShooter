@@ -23,7 +23,7 @@ namespace ss {
 	void World::TickInternal(float deltaTime)
 	{
 		//Get pending actors in actors at the begining of every tick, and make them play. 
-		for (shared<Actor> actor : mPendingActors) 
+		for (shared<Actor> actor : mPendingActors)
 		{
 			mActors.push_back(actor);
 			actor->BeginPlayInternal();
@@ -32,13 +32,13 @@ namespace ss {
 		mPendingActors.clear();
 
 		//Make actors play at the begining of every tick
-		for (auto iter = mActors.begin(); iter != mActors.end();) 
+		for (auto iter = mActors.begin(); iter != mActors.end();)
 		{
 			iter->get()->TickInternal(deltaTime);
 			++iter;
 		}
 
-		for (shared<Actor> actor : mActors) 
+		for (shared<Actor> actor : mActors)
 		{
 			actor->Tick(deltaTime);
 		}
@@ -79,11 +79,9 @@ namespace ss {
 
 	void World::BeginPlay()
 	{
-		//LOG("Began play. ");
 	}
 
 	void World::Tick(float deltaTime)
 	{
-		//LOG("Began play at frame rate %f", 1.f / deltaTime);
 	}
 }

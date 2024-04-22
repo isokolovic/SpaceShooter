@@ -1,8 +1,8 @@
 #pragma once
 #include <spaceship/Spaceship.h>
 
-namespace ss {
-
+namespace ss 
+{
 	class BulletShooter;
 	class PlayerSpaceship : public Spaceship {
 

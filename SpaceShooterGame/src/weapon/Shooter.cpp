@@ -10,7 +10,7 @@ namespace ss {
 	}
 
 	Shooter::Shooter(Actor* owner)
-		:mOwner{owner}
+		:mOwner{ owner }
 	{
 	}
 }

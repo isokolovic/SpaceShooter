@@ -4,8 +4,8 @@
 #include "framework/AssetManager.h"
 #include "framework/PhysicsSystem.h"
 
-namespace ss {
-
+namespace ss
+{
 	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
 		: mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
 		mTargetFrameRate{ 60.f },
@@ -89,7 +89,7 @@ namespace ss {
 
 	void Application::Render()
 	{
-		if (currentWorld) 
+		if (currentWorld)
 		{
 			currentWorld->Render(mWindow);
 		}

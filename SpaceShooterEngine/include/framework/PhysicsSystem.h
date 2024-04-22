@@ -2,8 +2,8 @@
 #include "framework/Core.h"
 #include <box2d/b2_world.h>
 
-namespace ss {
-
+namespace ss 
+{
 	class Actor;
 
 	class PhysicsContactListener : public b2ContactListener
