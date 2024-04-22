@@ -1,4 +1,5 @@
 #pragma once
+#include "framework/Delegate.h"
 
 namespace ss {
 
@@ -10,6 +11,8 @@ namespace ss {
 
 		float GetHealth() { return mHealth; }
 		float GetMaxHealth() { return mMaxHealth; }
+
+		Delegate<float, float, float> onHealthChanged;
 	private:
 		void TakenDamage(float amt);
 		void HealthEmpty();

@@ -29,5 +29,12 @@ namespace ss {
 	{
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
+
+		mHealthComponent.onHealthChanged.BindAction(GetWeakRef(), &Spaceship::OnHealthChanged);
+	}
+
+	void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
+	{
+
 	}
 }
