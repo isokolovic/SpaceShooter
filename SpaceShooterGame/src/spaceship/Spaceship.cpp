@@ -1,6 +1,7 @@
 #include <functional>
 #include "spaceship/Spaceship.h"
 #include "framework/MathUtility.h"
+#include "VFX/Explosion.h"
 
 namespace ss {
 
@@ -56,7 +57,10 @@ namespace ss {
 
 	void Spaceship::BlowUp()
 	{
+		Explosion* exp = new Explosion();
+		exp->SpawnExplosion(GetWorld(), GetActorLocation());
 		Destroy();
+		delete exp;
 	}
 
 	void Spaceship::Blink()
