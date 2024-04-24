@@ -21,7 +21,14 @@ namespace ss {
 		virtual void OnTakenDamage(float amt, float health, float maxHealth);
 		virtual void BlowUp();
 
+		void Blink();
+		void UpdateBlink(float deltaTime);
+
 		sf::Vector2f mVelocity;
 		HealthComponent mHealthComponent;
+
+		sf::Color mBlinkColorOffset;
+		float mBlinkDuration;
+		float mBlinkTime;
 	};
 }
