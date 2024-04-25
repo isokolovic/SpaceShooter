@@ -12,7 +12,7 @@ namespace ss {
 	void HealthComponent::ChangeHealth(float amt)
 	{
 		if (amt == 0) return;
-		if (mHealth = 0) return; //Dead
+		if (mHealth == 0) return; //Dead
 
 		mHealth += amt;
 		if (mHealth < 0)

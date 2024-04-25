@@ -11,12 +11,12 @@ namespace ss
 	public:
 		Explosion(
 			int particleAmt = 20,
-			float lifeTimeMin = 0.5f,
-			float lifeTimeMax = 1.f,
+			float lifeTimeMin = 1000.f,
+			float lifeTimeMax = 15000.f,
 			float sizeMin = 1,
-			float sizeMax = 2,
-			float speedMin = 200,
-			float speedMax = 400,
+			float sizeMax = 4,
+			float speedMin = 10,
+			float speedMax = 40,
 			const sf::Color& particleColor = sf::Color{ 255, 128, 0, 255 },
 			const List<std::string>& particleImagePaths =
 			{
