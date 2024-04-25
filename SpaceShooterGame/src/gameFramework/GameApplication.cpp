@@ -1,10 +1,7 @@
-#include "Enemy/Vanguard.h"
 #include "gameFramework/GameApplication.h"
-#include <framework/World.h>
-#include "framework/Actor.h"
+#include <Level/GameLevelOne.h>
 #include "config.h"
 #include "framework/AssetManager.h"
-#include "player/PlayerSpaceship.h"
 
 ss::Application* GetApplication()
 {
@@ -17,23 +14,6 @@ namespace ss
 		: Application(600, 800, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
 	{
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
-
-		weak<World> newWorld = LoadWorld<World>();
-
-		/*newWorld.lock()->SpawnActor<Actor>();*/ //Because it's a weak reference, must be locked first to get a pointer. 
-		testPlayerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
-
-		testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f, 400.f));
-		testPlayerSpaceship.lock()->SetActorRotation(-90.f);
-
-		weak<Vanguard> testSpaceShip = newWorld.lock()->SpawnActor<Vanguard>();
-		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
-
-		counter = 0.f;
-	}
-
-	void GameApplication::Tick(float deltaTime)
-	{
-		counter += deltaTime;
+		weak<GameLevelOne> newWorld = LoadWorld<GameLevelOne>();
 	}
 }
