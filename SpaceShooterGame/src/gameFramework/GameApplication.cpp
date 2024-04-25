@@ -1,3 +1,4 @@
+#include "Enemy/Vanguard.h"
 #include "gameFramework/GameApplication.h"
 #include <framework/World.h>
 #include "framework/Actor.h"
@@ -25,10 +26,8 @@ namespace ss
 		testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f, 400.f));
 		testPlayerSpaceship.lock()->SetActorRotation(-90.f);
 
-		weak<Spaceship> testSpaceShip = newWorld.lock()->SpawnActor<Spaceship>();
-		testSpaceShip.lock()->SetTexture("/SpaceShooterRedux/PNG/playerShip1_blue.png");
+		weak<Vanguard> testSpaceShip = newWorld.lock()->SpawnActor<Vanguard>();
 		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
-		testSpaceShip.lock()->SetTeamID(2);
 
 		counter = 0.f;
 	}
