@@ -2,6 +2,7 @@
 #include <framework/World.h>
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
+#include "framework/TimerManager.h"
 #include "Level/GameLevelOne.h"
 #include "player/PlayerSpaceship.h"
 
@@ -17,5 +18,14 @@ namespace ss
 
 		weak<Vanguard> testSpaceShip = SpawnActor<Vanguard>();
 		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
+	}
+
+	void GameLevelOne::BeginPlay()
+	{
+		TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallback_Test, 10);
+	}
+
+	void GameLevelOne::TimerCallback_Test()
+	{
 	}
 }
