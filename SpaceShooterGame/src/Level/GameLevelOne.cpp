@@ -3,6 +3,7 @@
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
 #include "framework/TimerManager.h"
+#include "gameplay/GameStage.h"
 #include "Level/GameLevelOne.h"
 #include "player/PlayerSpaceship.h"
 
@@ -29,5 +30,10 @@ namespace ss
 	{
 		LOG("Callback called.");
 		TimerManager::Get().ClearTimer(timerHandle_Test);
+	}
+
+	void GameLevelOne::InitGameStages()
+	{
+		AddStage(shared<GameStage>{new GameStage{ this }});
 	}
 }

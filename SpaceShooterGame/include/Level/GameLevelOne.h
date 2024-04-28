@@ -15,5 +15,6 @@ namespace ss
 		void TimerCallback_Test();
 		weak<PlayerSpaceship> testPlayerSpaceship;
 		TimerHandle timerHandle_Test;
+		virtual void InitGameStages() override;
 	};
 }

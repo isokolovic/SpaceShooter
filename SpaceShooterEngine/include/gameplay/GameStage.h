@@ -18,7 +18,7 @@ namespace ss
 		virtual void StartStage();
 		virtual void TickStage(float deltaTime);
 		void FinishStage();
-		bool isStageFinished() const { return mStageFinished; }
+		bool IsStageFinished() const { return mStageFinished; }
 	private:
 		World* mWorld;
 		bool mStageFinished;
