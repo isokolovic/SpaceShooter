@@ -22,12 +22,12 @@ namespace ss
 
 	void GameLevelOne::BeginPlay()
 	{
-		timerIndex_Test = TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallback_Test, 2, true);
+		timerHandle_Test = TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallback_Test, 2, true);
 	}
 
 	void GameLevelOne::TimerCallback_Test()
 	{
 		LOG("Callback called.");
-		TimerManager::Get().ClearTimer(timerIndex_Test);
+		TimerManager::Get().ClearTimer(timerHandle_Test);
 	}
 }
