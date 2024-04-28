@@ -43,7 +43,6 @@ namespace ss
 			}
 		}
 
-
 	private:
 		List<std::function<bool(Args...)>> mCallbacks;
 	};
