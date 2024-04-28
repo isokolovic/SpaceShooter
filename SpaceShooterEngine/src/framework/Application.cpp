@@ -3,6 +3,7 @@
 #include "framework/World.h"
 #include "framework/AssetManager.h"
 #include "framework/PhysicsSystem.h"
+#include "framework/TimerManager.h"
 
 namespace ss
 {
@@ -63,6 +64,8 @@ namespace ss
 			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
 			currentWorld->TickInternal(deltaTime);
 		}
+
+		TimerManager::Get().UpdateTimer(deltaTime);
 
 		PhysicsSystem::Get().Step(deltaTime); //Physics system update
 
