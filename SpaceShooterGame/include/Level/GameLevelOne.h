@@ -13,5 +13,6 @@ namespace ss
 		virtual void BeginPlay() override;
 		void TimerCallback_Test();
 		weak<PlayerSpaceship> testPlayerSpaceship;
+		unsigned int timerIndex_Test;
 	};
 }

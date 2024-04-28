@@ -41,6 +41,7 @@ namespace ss
 		mIsExpired = true;
 	}
 
+	unsigned int TimerManager::timerIndexCounter = 0;
 	unique<TimerManager> TimerManager::timerManager{ nullptr };
 
 	TimerManager::TimerManager()
@@ -60,9 +61,26 @@ namespace ss
 
 	void TimerManager::UpdateTimer(float deltaTime)
 	{
-		for (Timer& timer : mTimers)
+		for (auto iter = mTimers.begin(); iter != mTimers.end();)
 		{
-			timer.TickTimer(deltaTime);
+			if (iter->second.Expired())
+			{
+				iter = mTimers.erase(iter);
+			}
+			else
+			{
+				iter->second.TickTimer(deltaTime);
+				++iter;
+			}
+		}
+	}
+
+	void TimerManager::ClearTimer(unsigned int timerIndex)
+	{
+		auto iter = mTimers.find(timerIndex);
+		if (iter != mTimers.end())
+		{
+			iter->second.SetExpired();
 		}
 	}
 }
