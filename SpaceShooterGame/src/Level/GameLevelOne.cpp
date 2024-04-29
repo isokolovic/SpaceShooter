@@ -6,6 +6,7 @@
 #include "framework/AssetManager.h"
 #include "framework/TimerManager.h"
 #include "gameplay/GameStage.h"
+#include "gameplay/WaitStage.h"
 #include "Level/GameLevelOne.h"
 #include "player/PlayerSpaceship.h"
 
@@ -26,7 +27,9 @@ namespace ss
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
+		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
 		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
+		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
+		AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
 	}
 }
