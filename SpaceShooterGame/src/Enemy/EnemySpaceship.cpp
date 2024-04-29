@@ -13,7 +13,7 @@ namespace ss
 	{
 		Spaceship::Tick(deltaTime);
 
-		if (IsActorOutOfWindowBounds(GetActorGlobalBounds().width)) Destroy();
+		if (IsActorOutOfWindowBounds(GetActorGlobalBounds().width * 2.f)) Destroy();
 	}
 
 	void EnemySpaceship::OnActorBeginOverlap(Actor* other)
