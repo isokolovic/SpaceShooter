@@ -1,6 +1,7 @@
 #pragma once
 #include "framework/TimerManager.h"
 #include "gameplay/GameStage.h"
+#include "Enemy/Hexagon.h"
 #include "SFML/Graphics.hpp"
 
 namespace ss
