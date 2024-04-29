@@ -1,4 +1,5 @@
 #include "Enemy/Vanguard.h"
+#include "Enemy/VanguardStage.h"
 #include <framework/World.h>
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
@@ -16,24 +17,14 @@ namespace ss
 		testPlayerSpaceship = SpawnActor<PlayerSpaceship>();
 		testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f, 400.f));
 		testPlayerSpaceship.lock()->SetActorRotation(-90.f);
-
-		weak<Vanguard> testSpaceShip = SpawnActor<Vanguard>();
-		testSpaceShip.lock()->SetActorLocation(sf::Vector2f{ 100.f, 50.f });
 	}
 
 	void GameLevelOne::BeginPlay()
 	{
-		timerHandle_Test = TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallback_Test, 2, true);
-	}
-
-	void GameLevelOne::TimerCallback_Test()
-	{
-		LOG("Callback called.");
-		TimerManager::Get().ClearTimer(timerHandle_Test);
 	}
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<GameStage>{new GameStage{ this }});
+		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
 	}
 }

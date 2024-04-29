@@ -17,7 +17,6 @@ namespace ss
 
 	void GameStage::TickStage(float deltaTime)
 	{
-		LOG("Stage sticking.");
 	}
 
 	void GameStage::FinishStage()
