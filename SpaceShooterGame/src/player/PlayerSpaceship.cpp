@@ -2,7 +2,7 @@
 #include "SFML/System.hpp"
 #include "framework/MathUtility.h"
 #include "weapon/BulletShooter.h"
-#include "weapon/ThreeWayShooter.h"
+#include "weapon/FrontalWiper.h"
 
 namespace ss {
 
@@ -10,7 +10,7 @@ namespace ss {
 		: Spaceship{ owningWorld, path },
 		mMoveInput{},
 		mSpeed{ 200.f },
-		mShooter{ new ThreeWayShooter{ this, 0.1f, {50.f, 0.f} } }
+		mShooter{ new FrontalWiper{ this, 0.1f, {50.f, 0.f} } }
 	{
 		SetTeamID(1);
 	}
