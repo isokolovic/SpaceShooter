@@ -1,6 +1,7 @@
 #include "Enemy/HexagonStage.h"
 #include "Enemy/TwinBladeStage.h"
 #include "Enemy/Vanguard.h"
+#include "Enemy/UFO.h"
 #include "Enemy/VanguardStage.h"
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
@@ -24,14 +25,19 @@ namespace ss
 
 	void GameLevelOne::BeginPlay()
 	{
+		weak<UFO> testUfo = SpawnActor<UFO>(sf::Vector2f{ 0.f, 0.f });
+		testUfo.lock()->SetActorLocation({ GetWindowSize().x / 2.f, GetWindowSize().y / 2.f });
 	}
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
-		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
+		AddStage(shared<WaitStage>{new WaitStage{ this, 3.f }});
 		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
+
 		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
 		AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
+
+		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
+		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
 	}
 }
