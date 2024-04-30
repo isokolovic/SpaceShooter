@@ -1,9 +1,9 @@
 #pragma once
 #include <spaceship/Spaceship.h>
 
-namespace ss 
+namespace ss
 {
-	class BulletShooter;
+	class Shooter;
 	class PlayerSpaceship : public Spaceship {
 
 	public:
@@ -21,6 +21,6 @@ namespace ss
 		sf::Vector2f mMoveInput;
 		float mSpeed;
 
-		unique<BulletShooter> mShooter; 
+		unique<Shooter> mShooter;
 	};
 }
