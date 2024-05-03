@@ -16,6 +16,7 @@ namespace ss {
 		virtual void Shoot();
 		virtual void BeginPlay() override;
 		virtual void ApplyDamage(float amt) override;
+		HealthComponent& GetHealthComponent() { return mHealthComponent; }
 	private:
 		virtual void OnHealthChanged(float amt, float health, float maxHealth);
 		virtual void OnTakenDamage(float amt, float health, float maxHealth);
