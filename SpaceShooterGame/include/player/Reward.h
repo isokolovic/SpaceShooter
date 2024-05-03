@@ -5,8 +5,9 @@
 namespace ss
 {
 	class PlayerSpaceship;
+	class Reward;
 	using RewardFunc = std::function<void(PlayerSpaceship*)>;
-	using RewardFactoryFunc = std::function<weak<Reward(World*)>>;
+	using RewardFactoryFunc = std::function<weak<Reward>(World*)>;
 
 	class Reward : public Actor
 	{
@@ -27,7 +28,7 @@ namespace ss
 
 	weak<Reward> CreateReward(World* world, const std::string& texturePath, RewardFunc rewardFunc);
 
-	void RewardHealth(PlayerSpaceship* player); 
-	void RewardThreeWayShooter(PlayerSpaceship* player); 
-	void RewardFrontalWiper(PlayerSpaceship* player); 
+	void RewardHealth(PlayerSpaceship* player);
+	void RewardThreeWayShooter(PlayerSpaceship* player);
+	void RewardFrontalWiper(PlayerSpaceship* player);
 }

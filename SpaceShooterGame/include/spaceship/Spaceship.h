@@ -21,6 +21,7 @@ namespace ss {
 		virtual void OnHealthChanged(float amt, float health, float maxHealth);
 		virtual void OnTakenDamage(float amt, float health, float maxHealth);
 		virtual void BlowUp();
+		virtual void Blew();
 
 		void Blink();
 		void UpdateBlink(float deltaTime);

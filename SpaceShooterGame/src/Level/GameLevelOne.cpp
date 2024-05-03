@@ -18,10 +18,6 @@ namespace ss
 	GameLevelOne::GameLevelOne(Application* owningApp)
 		: World(owningApp)
 	{
-		/*newWorld.lock()->SpawnActor<Actor>();*/ //Because it's a weak reference, must be locked first to get a pointer. 
-		testPlayerSpaceship = SpawnActor<PlayerSpaceship>();
-		testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f, 400.f));
-		testPlayerSpaceship.lock()->SetActorRotation(-90.f);
 	}
 
 	void GameLevelOne::BeginPlay()

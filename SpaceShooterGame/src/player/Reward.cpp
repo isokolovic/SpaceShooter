@@ -28,11 +28,12 @@ namespace ss
 	void Reward::OnActorBeginOverlap(Actor* otherActor)
 	{
 		//TODO clean-up casting
-		PlayerSpaceship* playerSpaceship = static_cast<PlayerSpaceship*>(otherActor);
+		PlayerSpaceship* playerSpaceship = dynamic_cast<PlayerSpaceship*>(otherActor);
 
 		if (playerSpaceship != nullptr && !playerSpaceship->IsPendingDestroy())
 		{
 			mRewardFunc(playerSpaceship);
+			Destroy();
 		}
 	}
 
@@ -43,12 +44,12 @@ namespace ss
 
 	weak<Reward> CreateThreeWayShooterRevard(World* world)
 	{
-		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/three_shooter_pickup.png", RewardThreeWayShooter);
+		return CreateReward(world, "SpaceShooterRedux/PNG/pickups/three_shooter_pickup.png", RewardThreeWayShooter);
 	}
 
 	weak<Reward> CreateFrontalWiperReward(World* world)
 	{
-		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/front_row_shooter_pickup.png", RewardFrontalWiper);
+		return CreateReward(world, "SpaceShooterRedux/PNG/pickups/front_row_shooter_pickup.png", RewardFrontalWiper);
 	}
 
 	weak<Reward> CreateReward(World* world, const std::string& texturePath, RewardFunc rewardFunc)
