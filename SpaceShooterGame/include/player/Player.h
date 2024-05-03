@@ -16,8 +16,8 @@ namespace ss
 
 		void AddLifeCount(unsigned int count);
 		int GetLifeCount() const { return mLifeCount; }
-		int AddScore(unsigned int amt);
 		int GetScore() const { return mScore; }
+		void AddScore(unsigned int amt);
 
 		Delegate<int> onLifeChange;
 		Delegate<int> onScoreChange;

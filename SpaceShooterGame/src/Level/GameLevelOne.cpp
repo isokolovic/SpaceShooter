@@ -11,6 +11,7 @@
 #include "gameplay/GameStage.h"
 #include "gameplay/WaitStage.h"
 #include "Level/GameLevelOne.h"
+#include "player/PlayerManager.h"
 #include "player/PlayerSpaceship.h"
 
 namespace ss
@@ -22,6 +23,9 @@ namespace ss
 
 	void GameLevelOne::BeginPlay()
 	{
+		Player newPlayer = PlayerManager::Get().CreateNewPlayer();
+		mPlayerSpaceship = newPlayer.SpawnSpaceship(this);
+		mPlayerSpaceship.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceshipDestroyed);
 	}
 
 	void GameLevelOne::InitGameStages()
@@ -36,5 +40,24 @@ namespace ss
 
 		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
 		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
+	}
+
+	void GameLevelOne::PlayerSpaceshipDestroyed(Actor* destroyedShip)
+	{
+		mPlayerSpaceship = PlayerManager::Get().GetPlayer()->SpawnSpaceship(this);
+
+		if (!mPlayerSpaceship.expired())
+		{
+			mPlayerSpaceship.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceshipDestroyed);
+		}
+		else
+		{
+			GameOver();
+		}
+	}
+
+	void GameLevelOne::GameOver()
+	{
+		LOG("Game over.");
 	}
 }

@@ -121,6 +121,7 @@ namespace ss
 	void Actor::Destroy()
 	{
 		UnInitializePhysics();
+		onActorDestroyed.Broadcast(this);
 		Object::Destroy();
 	}
 
