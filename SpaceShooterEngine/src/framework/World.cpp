@@ -95,8 +95,6 @@ namespace ss {
 				++iter;
 			}
 		}
-
-
 	}
 
 	void World::AddStage(const shared<GameStage>& newStage)
