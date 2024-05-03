@@ -38,17 +38,17 @@ namespace ss
 
 	weak<Reward> CreateHealthReward(World* world)
 	{
-		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/pill_green.png", RewardHealth);
+		return CreateReward(world, "SpaceShooterRedux/PNG/pickups/pill_green.png", RewardHealth);
 	}
 
 	weak<Reward> CreateThreeWayShooterRevard(World* world)
 	{
-		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/powerupRed_star.png", RewardThreeWayShooter);
+		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/three_shooter_pickup.png", RewardThreeWayShooter);
 	}
 
 	weak<Reward> CreateFrontalWiperReward(World* world)
 	{
-		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/powerupYellow_star.png", RewardFrontalWiper);
+		return CreateReward(world, "SpaceShooterRedux/PNG/Power-ups/front_row_shooter_pickup.png", RewardFrontalWiper);
 	}
 
 	weak<Reward> CreateReward(World* world, const std::string& texturePath, RewardFunc rewardFunc)
