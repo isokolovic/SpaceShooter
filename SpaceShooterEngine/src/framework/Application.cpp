@@ -11,7 +11,7 @@ namespace ss
 		: mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
 		mTargetFrameRate{ 60.f },
 		mTickClock{},
-		currentWorld{ nullptr },
+		mCurrentWorld{ nullptr },
 		mCleanCycleClock{},
 		mCleanCycleInterval{ 2.f }
 	{
@@ -34,6 +34,10 @@ namespace ss
 				{
 					mWindow.close();
 				}
+				else
+				{
+					DispatchEvent(windowEvent);
+				}
 			}
 
 			float frameDeltaTime = mTickClock.restart().asSeconds();
@@ -53,16 +57,24 @@ namespace ss
 		return mWindow.getSize();
 	}
 
+	void Application::DispatchEvent(const sf::Event& event)
+	{
+		if (mCurrentWorld)
+		{
+			return mCurrentWorld->DispatchEvent(event);
+		}
+	}
+
 	void Application::TickInternal(float deltaTime)
 	{
 		//Execute Tick on the top level first then TickInternal of the currentWorld
 		//First tick if player input, after what game logic is updated
 		Tick(deltaTime);
 
-		if (currentWorld)
+		if (mCurrentWorld)
 		{
 			//currentWorld->BeginPlayInternal(); //Transfered to be calleed only at the begining (LoadWorld()). May not work when changing level?
-			currentWorld->TickInternal(deltaTime);
+			mCurrentWorld->TickInternal(deltaTime);
 		}
 
 		TimerManager::Get().UpdateTimer(deltaTime);
@@ -74,9 +86,9 @@ namespace ss
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
 
-			if (currentWorld)
+			if (mCurrentWorld)
 			{
-				currentWorld->CleanCycle();
+				mCurrentWorld->CleanCycle();
 			}
 		}
 	}
@@ -92,9 +104,9 @@ namespace ss
 
 	void Application::Render()
 	{
-		if (currentWorld)
+		if (mCurrentWorld)
 		{
-			currentWorld->Render(mWindow);
+			mCurrentWorld->Render(mWindow);
 		}
 	}
 
