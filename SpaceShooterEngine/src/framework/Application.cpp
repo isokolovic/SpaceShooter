@@ -57,12 +57,14 @@ namespace ss
 		return mWindow.getSize();
 	}
 
-	void Application::DispatchEvent(const sf::Event& event)
+	bool Application::DispatchEvent(const sf::Event& event)
 	{
 		if (mCurrentWorld)
 		{
 			return mCurrentWorld->DispatchEvent(event);
 		}
+
+		return false;
 	}
 
 	void Application::TickInternal(float deltaTime)

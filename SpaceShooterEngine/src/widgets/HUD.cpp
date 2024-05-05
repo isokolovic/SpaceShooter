@@ -7,7 +7,7 @@ namespace ss
 	{
 	}
 
-	void HUD::Init(sf::RenderWindow& windowRef)
+	void HUD::Init(const sf::RenderWindow& windowRef)
 	{
 	}
 
@@ -23,5 +23,9 @@ namespace ss
 	bool HUD::HandleEvent(const sf::Event& event)
 	{
 		return false;
+	}
+
+	void HUD::Tick(float deltaTime)
+	{
 	}
 }

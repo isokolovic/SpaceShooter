@@ -21,7 +21,7 @@ namespace ss
 		const sf::RenderWindow& GetWindow() const { return mWindow; }
 
 	private:
-		void DispatchEvent(const sf::Event& event);
+		bool DispatchEvent(const sf::Event& event);
 		void TickInternal(float deltaTime);
 		void RenderInternal();
 
