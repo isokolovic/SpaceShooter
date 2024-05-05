@@ -9,6 +9,7 @@ namespace ss
 	public:
 		static AssetManager& Get();
 		shared<sf::Texture> LoadTexture(const std::string& path);
+		shared<sf::Font> LoadFont(const std::string& path);
 		void CleanCycle();
 		void SetAssetRootDirectory(std::string& directory);
 	protected:
@@ -16,6 +17,7 @@ namespace ss
 	private:
 		static unique<AssetManager> assetManager;
 		Dictionary<std::string, shared<sf::Texture>> mLoadedTextureMap;
+		Dictionary<std::string, shared<sf::Font>> mLoadedFontMap;
 		std::string mRootDirectory;
 	};
 }
