@@ -49,6 +49,9 @@ add_library(${SPACE_SHOOTER_ENGINE_TARGET_NAME} STATIC
 
   ${CMAKE_CURRENT_SOURCE_DIR}/include/widgets/TextWidget.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/widgets/TextWidget.cpp
+
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/widgets/ValueGauge.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/widgets/ValueGauge.cpp
 )   
 
 target_include_directories(${SPACE_SHOOTER_ENGINE_TARGET_NAME} PUBLIC
