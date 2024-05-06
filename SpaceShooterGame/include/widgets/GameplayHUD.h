@@ -21,5 +21,8 @@ namespace ss
 		void RefreshHealthBar();
 		TextWidget mFrameRateText;
 		ValueGauge mPlayerHealthBar;
+		sf::Color mHealthyHealthBarColor;
+		sf::Color mCriticalHealthBarColor;
+		float mCriticalThreshold;
 	};
 }

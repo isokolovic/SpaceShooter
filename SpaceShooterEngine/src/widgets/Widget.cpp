@@ -22,7 +22,7 @@ namespace ss
 
 	void Widget::NativeDraw(sf::RenderWindow& windowRef)
 	{
-		if (mIsVisible) 
+		if (mIsVisible)
 		{
 			Draw(windowRef);
 		}
@@ -48,5 +48,16 @@ namespace ss
 	void Widget::SetVisibility(bool newVisibility)
 	{
 		mIsVisible = newVisibility;
+	}
+
+	sf::FloatRect Widget::GetBound() const
+	{
+		return sf::FloatRect();
+	}
+
+	sf::Vector2f Widget::GetCenterPosition() const
+	{
+		sf::FloatRect bound = GetBound();
+		return sf::Vector2f{ bound.left + bound.width / 2.f, bound.top + bound.height / 2.f };
 	}
 }
