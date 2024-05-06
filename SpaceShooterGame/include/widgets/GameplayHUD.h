@@ -1,5 +1,6 @@
 #pragma once
 #include "widgets/HUD.h"
+#include "widgets/ImageWidget.h"
 #include "widgets/TextWidget.h"
 #include "widgets/ValueGauge.h"
 
@@ -21,8 +22,12 @@ namespace ss
 		void RefreshHealthBar();
 		TextWidget mFrameRateText;
 		ValueGauge mPlayerHealthBar;
+		ImageWidget mPlayerLifeIcon;
+
 		sf::Color mHealthyHealthBarColor;
 		sf::Color mCriticalHealthBarColor;
 		float mCriticalThreshold;
+
+		float mWidgetSpacing;
 	};
 }

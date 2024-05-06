@@ -11,7 +11,9 @@ namespace ss
 		mPlayerHealthBar{},
 		mHealthyHealthBarColor{ 128,255,128,255 },
 		mCriticalHealthBarColor{ 255,0,0,255 },
-		mCriticalThreshold{ 0.3 }
+		mCriticalThreshold{ 0.3 },
+		mPlayerLifeIcon{ "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png" },
+		mWidgetSpacing{ 10.f }
 	{
 		mFrameRateText.SetTextSize(20);
 	}
@@ -20,6 +22,7 @@ namespace ss
 	{
 		mFrameRateText.NativeDraw(windowRef);
 		mPlayerHealthBar.NativeDraw(windowRef);
+		mPlayerLifeIcon.NativeDraw(windowRef);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -34,6 +37,10 @@ namespace ss
 		auto windowSize = windowRef.getSize();
 		mPlayerHealthBar.SetWidgetLocation(sf::Vector2f{ 20.f, windowSize.y - 50.f });
 
+		sf::Vector2f lifeIconPos = mPlayerHealthBar.GetWidgetLocation();
+		lifeIconPos += sf::Vector2f{ mPlayerHealthBar.GetBound().width + mWidgetSpacing, 0.f };
+		mPlayerLifeIcon.SetWidgetLocation(lifeIconPos);
+
 		RefreshHealthBar();
 	}
 
@@ -44,6 +51,7 @@ namespace ss
 		{
 			weak<PlayerSpaceship> playerSpaceship = player->GetCurrentSpaceship();
 			playerSpaceship.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameplayHUD::PlayerSpaceshipDestroyed);
+
 			HealthComponent& healthComp = player->GetCurrentSpaceship().lock()->GetHealthComponent();
 			healthComp.onHealthChanged.BindAction(GetWeakRef(), &GameplayHUD::PlayerHealthUpdated);
 			mPlayerHealthBar.UpateValue(healthComp.GetHealth(), healthComp.GetMaxHealth());
