@@ -18,7 +18,6 @@ namespace ss
 	private:
 		void TakenDamage(float amt);
 		void HealthEmpty();
-		//void HealthRegen(float amt);
 
 		float mHealth;
 		float mMaxHealth;

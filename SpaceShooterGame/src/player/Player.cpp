@@ -28,6 +28,7 @@ namespace ss
 		}
 		else
 		{
+			mCurrentPlayerSpaceship = weak<PlayerSpaceship>{};
 			onLifeExhausted.Broadcast();
 		}
 
