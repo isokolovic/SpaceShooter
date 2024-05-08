@@ -10,7 +10,7 @@ namespace ss
 		mSpawnInterval{ 4.f },
 		mSpawnAmount{ 10 },
 		mCurrentSpawnAmount{ 0 },
-		mUFOSpeed{ 200.f }
+		mUFOSpeed{ 100.f }
 	{
 	}
 

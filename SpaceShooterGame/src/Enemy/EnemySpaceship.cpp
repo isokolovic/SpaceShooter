@@ -1,10 +1,12 @@
 #include "Enemy/EnemySpaceship.h"
 #include "framework/MathUtility.h"
+#include "player/Player.h"
+#include "player/PlayerManager.h"
 
 namespace ss
 {
-	EnemySpaceship::EnemySpaceship(World* owningWorld, std::string texturePath, float collisionDamage, const List<RewardFactoryFunc> rewards)
-		: Spaceship(owningWorld, texturePath), mCollisionDamage{ collisionDamage }, mRewardFactoryFunc{ rewards }
+	EnemySpaceship::EnemySpaceship(World* owningWorld, std::string texturePath, float collisionDamage, float rewardSpawnRate, const List<RewardFactoryFunc> rewards)
+		: Spaceship(owningWorld, texturePath), mCollisionDamage{ collisionDamage }, mRewardFactoryFunc{ rewards }, mScoreAwardAmt{ 10 }, mRewardSpawnRate{ rewardSpawnRate }
 	{
 		SetTeamID(2);
 	}
@@ -16,9 +18,16 @@ namespace ss
 		if (IsActorOutOfWindowBounds(GetActorGlobalBounds().width * 2.f)) Destroy();
 	}
 
+	void EnemySpaceship::SetScoreAwardAmt(unsigned int amt)
+	{
+		mScoreAwardAmt = amt;
+	}
+
 	void EnemySpaceship::SpawnReward()
 	{
 		if (mRewardFactoryFunc.size() == 0) return;
+
+		if (mRewardSpawnRate < RandomRange(0, 1)) return; //Don't spawn always
 
 		int pick = (int)RandomRange(0, mRewardFactoryFunc.size());
 		if (pick >= 0 && pick < mRewardFactoryFunc.size())
@@ -41,5 +50,11 @@ namespace ss
 	void EnemySpaceship::Blew()
 	{
 		SpawnReward();
+
+		Player* player = PlayerManager::Get().GetPlayer();
+		if (player)
+		{
+			player->AddScore(mScoreAwardAmt);
+		}
 	}
 }

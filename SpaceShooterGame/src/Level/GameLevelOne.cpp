@@ -32,7 +32,6 @@ namespace ss
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<UFOStage>{new UFOStage{ this }});
 
 		AddStage(shared<WaitStage>{new WaitStage{ this, 3.f }});
 		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
@@ -42,6 +41,9 @@ namespace ss
 
 		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
 		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
+
+		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
+		AddStage(shared<UFOStage>{new UFOStage{ this }});
 	}
 
 	void GameLevelOne::PlayerSpaceshipDestroyed(Actor* destroyedShip)
