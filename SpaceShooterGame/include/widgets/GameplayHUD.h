@@ -1,4 +1,5 @@
 #pragma once
+#include "widgets/ButtonWidget.h"
 #include "widgets/HUD.h"
 #include "widgets/ImageWidget.h"
 #include "widgets/TextWidget.h"
@@ -30,6 +31,9 @@ namespace ss
 		TextWidget mPlayerLifeText;
 		ImageWidget mPlayerScoreIcon;
 		TextWidget mPlayerScoreText;
+
+		//TODO Remove
+		Button TestButton;
 
 		sf::Color mHealthyHealthBarColor;
 		sf::Color mCriticalHealthBarColor;

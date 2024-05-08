@@ -16,7 +16,8 @@ namespace ss
 		mHealthyHealthBarColor{ 128,255,128,255 },
 		mCriticalHealthBarColor{ 255,0,0,255 },
 		mCriticalThreshold{ 0.3 },
-		mWidgetSpacing{ 10.f }
+		mWidgetSpacing{ 10.f },
+		TestButton{}
 	{
 		mFrameRateText.SetTextSize(20);
 		mPlayerLifeText.SetTextSize(20);
@@ -31,6 +32,7 @@ namespace ss
 		mPlayerLifeText.NativeDraw(windowRef);
 		mPlayerScoreIcon.NativeDraw(windowRef);
 		mPlayerScoreText.NativeDraw(windowRef);
+		TestButton.NativeDraw(windowRef);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -59,6 +61,8 @@ namespace ss
 		nextWidgetPos += sf::Vector2f{ mPlayerScoreIcon.GetBound().width + mWidgetSpacing, 0.f };
 		mPlayerScoreText.SetWidgetLocation(nextWidgetPos);
 
+		TestButton.SetWidgetLocation({ windowSize.x	/ 2.f, windowSize.y / 2.f });
+
 		RefreshHealthBar();
 		ConnectPlayerStatus();
 	}
@@ -86,7 +90,7 @@ namespace ss
 			int lifeCount = player->GetLifeCount();
 			mPlayerLifeText.SetString(std::to_string(lifeCount));
 			player->onLifeChange.BindAction(GetWeakRef(), &GameplayHUD::PlayerLifeCountUpdated);
-			
+
 			int playerScore = player->GetScore();
 			mPlayerScoreText.SetString(std::to_string(playerScore));
 			player->onScoreChange.BindAction(GetWeakRef(), &GameplayHUD::PlayerScoreUpdated);
