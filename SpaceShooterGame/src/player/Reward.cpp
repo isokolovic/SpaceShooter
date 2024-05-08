@@ -3,6 +3,7 @@
 #include "player/PlayerSpaceship.h"
 #include "weapon/ThreeWayShooter.h"
 #include "weapon/FrontalWiper.h"
+#include "player/PlayerManager.h"
 
 namespace ss
 {
@@ -27,12 +28,17 @@ namespace ss
 
 	void Reward::OnActorBeginOverlap(Actor* otherActor)
 	{
-		//TODO clean-up casting
-		PlayerSpaceship* playerSpaceship = dynamic_cast<PlayerSpaceship*>(otherActor);
+		if (!otherActor || otherActor->IsPendingDestroy()) return;
 
-		if (playerSpaceship != nullptr && !playerSpaceship->IsPendingDestroy())
+		if (!PlayerManager::Get().GetPlayer()) return;
+
+		weak<PlayerSpaceship> playerSpaceship = PlayerManager::Get().GetPlayer()->GetCurrentSpaceship();
+
+		if (playerSpaceship.expired() || playerSpaceship.lock()->IsPendingDestroy()) return;
+
+		if (playerSpaceship.lock()->GetUniqueID() == otherActor->GetUniqueID())
 		{
-			mRewardFunc(playerSpaceship);
+			mRewardFunc(playerSpaceship.lock().get());
 			Destroy();
 		}
 	}
