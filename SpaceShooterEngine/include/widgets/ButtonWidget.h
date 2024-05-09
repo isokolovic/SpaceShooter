@@ -9,10 +9,20 @@ namespace ss
 	public:
 		Button(const std::string& textString = "Button", const std::string& buttonTexturePath = "SpaceShooterRedux/PNG/UI/buttonBlue.png");
 		virtual sf::FloatRect GetBound() const;
+		void SetTextString(const std::string& newStr);
+		void SetTextCharacterSize(unsigned int characterSize);
+		virtual bool HandleEvent(const sf::Event& windowEvent) override;
+		Delegate<> onButtonClicked;
 	private:
 		virtual void Draw(sf::RenderWindow& windowRef) override;
 		virtual void LocationUpdated(const sf::Vector2f location);
 		virtual void RotationUpdated(float rotation);
+		void CenterText();
+		void ButtonUp();
+		void ButtonDown();
+		void MouseHovered();
+
+
 		shared<sf::Texture> mButtonTexture;
 		sf::Sprite mButtonSprite;
 		shared<sf::Font> mButtonFont;

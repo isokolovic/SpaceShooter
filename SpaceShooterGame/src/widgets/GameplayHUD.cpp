@@ -42,6 +42,11 @@ namespace ss
 		mFrameRateText.SetString(frameRateText);
 	}
 
+	bool GameplayHUD::HandleEvent(const sf::Event& event)
+	{
+		return TestButton.HandleEvent(event) || HUD::HandleEvent(event);
+	}
+
 	void GameplayHUD::Init(const sf::RenderWindow& windowRef)
 	{
 		auto windowSize = windowRef.getSize();
@@ -61,7 +66,9 @@ namespace ss
 		nextWidgetPos += sf::Vector2f{ mPlayerScoreIcon.GetBound().width + mWidgetSpacing, 0.f };
 		mPlayerScoreText.SetWidgetLocation(nextWidgetPos);
 
-		TestButton.SetWidgetLocation({ windowSize.x	/ 2.f, windowSize.y / 2.f });
+		TestButton.SetWidgetLocation({ windowSize.x / 2.f, windowSize.y / 2.f });
+		TestButton.SetTextCharacterSize(20);
+		TestButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::TestButtonClick);
 
 		RefreshHealthBar();
 		ConnectPlayerStatus();
@@ -95,6 +102,11 @@ namespace ss
 			mPlayerScoreText.SetString(std::to_string(playerScore));
 			player->onScoreChange.BindAction(GetWeakRef(), &GameplayHUD::PlayerScoreUpdated);
 		}
+	}
+
+	void GameplayHUD::TestButtonClick()
+	{
+		LOG("Button clicked");
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)
