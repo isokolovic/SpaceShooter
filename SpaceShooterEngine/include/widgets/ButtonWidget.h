@@ -15,7 +15,7 @@ namespace ss
 		Delegate<> onButtonClicked;
 	private:
 		virtual void Draw(sf::RenderWindow& windowRef) override;
-		virtual void LocationUpdated(const sf::Vector2f location);
+		virtual void LocationUpdated(const sf::Vector2f& location);
 		virtual void RotationUpdated(float rotation);
 		void CenterText();
 		void ButtonUp();

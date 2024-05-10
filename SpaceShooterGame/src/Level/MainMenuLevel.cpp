@@ -1,10 +1,12 @@
+#include "framework/Application.h"
+#include "Level/GameLevelOne.h"
 #include "Level/MainMenuLevel.h"
 #include "widgets/MainMenuHUD.h"
 
 namespace ss
 {
 	MainMenuLevel::MainMenuLevel(Application* owningApplication)
-		: World{owningApplication}
+		: World{ owningApplication }
 	{
 		mMainMenuHUD = SpawnHUD<MainMenuHUD>();
 	}
@@ -17,11 +19,11 @@ namespace ss
 
 	void MainMenuLevel::StartGame()
 	{
-		LOG("Starting game");
+		GetApplication()->LoadWorld<GameLevelOne>();
 	}
 
 	void MainMenuLevel::QuitGame()
 	{
-		LOG("Quitting game");
+		GetApplication()->QuitApplication();
 	}
 }

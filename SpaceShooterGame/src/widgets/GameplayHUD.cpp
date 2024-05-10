@@ -16,8 +16,7 @@ namespace ss
 		mHealthyHealthBarColor{ 128,255,128,255 },
 		mCriticalHealthBarColor{ 255,0,0,255 },
 		mCriticalThreshold{ 0.3 },
-		mWidgetSpacing{ 10.f },
-		TestButton{}
+		mWidgetSpacing{ 10.f }
 	{
 		mFrameRateText.SetTextSize(20);
 		mPlayerLifeText.SetTextSize(20);
@@ -32,7 +31,6 @@ namespace ss
 		mPlayerLifeText.NativeDraw(windowRef);
 		mPlayerScoreIcon.NativeDraw(windowRef);
 		mPlayerScoreText.NativeDraw(windowRef);
-		TestButton.NativeDraw(windowRef);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -44,7 +42,7 @@ namespace ss
 
 	bool GameplayHUD::HandleEvent(const sf::Event& event)
 	{
-		return TestButton.HandleEvent(event) || HUD::HandleEvent(event);
+		return HUD::HandleEvent(event);
 	}
 
 	void GameplayHUD::Init(const sf::RenderWindow& windowRef)
@@ -65,10 +63,6 @@ namespace ss
 
 		nextWidgetPos += sf::Vector2f{ mPlayerScoreIcon.GetBound().width + mWidgetSpacing, 0.f };
 		mPlayerScoreText.SetWidgetLocation(nextWidgetPos);
-
-		TestButton.SetWidgetLocation({ windowSize.x / 2.f, windowSize.y / 2.f });
-		TestButton.SetTextSize(20);
-		TestButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::TestButtonClick);
 
 		RefreshHealthBar();
 		ConnectPlayerStatus();
@@ -102,11 +96,6 @@ namespace ss
 			mPlayerScoreText.SetString(std::to_string(playerScore));
 			player->onScoreChange.BindAction(GetWeakRef(), &GameplayHUD::PlayerScoreUpdated);
 		}
-	}
-
-	void GameplayHUD::TestButtonClick()
-	{
-		LOG("Button clicked");
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)

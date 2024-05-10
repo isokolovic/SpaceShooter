@@ -32,7 +32,7 @@ namespace ss
 			{
 				if (windowEvent.type == sf::Event::EventType::Closed())
 				{
-					mWindow.close();
+					QuitApplication();
 				}
 				else
 				{
@@ -55,6 +55,11 @@ namespace ss
 	sf::Vector2u Application::GetWindowSize() const
 	{
 		return mWindow.getSize();
+	}
+
+	void Application::QuitApplication()
+	{
+		mWindow.close();
 	}
 
 	bool Application::DispatchEvent(const sf::Event& event)
@@ -92,6 +97,12 @@ namespace ss
 			{
 				mCurrentWorld->CleanCycle();
 			}
+		}
+
+		if (mPendingWorld && mPendingWorld != mCurrentWorld)
+		{
+			mCurrentWorld = mPendingWorld;
+			mCurrentWorld->BeginPlayInternal();
 		}
 	}
 
