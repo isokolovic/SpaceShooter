@@ -25,9 +25,9 @@ namespace ss
 
 		float mSpawnInterval;
 		float mMinSpawnInterval;
-		float sSpawnIntervalDecrement;
-		float sSpawnIntervalDecrementInterval;
-		float stageDuration;
+		float mSpawnIntervalDecrement;
+		float mSpawnIntervalDecrementInterval;
+		float mStageDuration;
 		TimerHandle mDifficultTimerHandle;
 		TimerHandle mSpawnTimer;
 	};
