@@ -65,6 +65,12 @@ add_executable(${SPACE_SHOOTER_GAME_TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/UFOStage.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/UFOStage.cpp 
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/Boss.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/Boss.cpp 
+
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/BossStage.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/BossStage.cpp 
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/ChaosStage.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/ChaosStage.cpp 
 

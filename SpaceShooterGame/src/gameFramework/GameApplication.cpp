@@ -12,7 +12,7 @@ ss::Application* GetApplication()
 namespace ss
 {
 	GameApplication::GameApplication()
-		: Application(600, 800, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
+		: Application(700, 820, "Space Shooter", sf::Style::Titlebar | sf::Style::Close)
 	{
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
 		weak<MainMenuLevel> newWorld = LoadWorld<MainMenuLevel>();

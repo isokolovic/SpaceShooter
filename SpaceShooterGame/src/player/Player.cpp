@@ -20,7 +20,7 @@ namespace ss
 
 			/*newWorld.lock()->SpawnActor<Actor>();*/ //Because it's a weak reference, must be locked first to get a pointer. 
 			mCurrentPlayerSpaceship = world->SpawnActor<PlayerSpaceship>();
-			mCurrentPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(windowSize.x / 2.f, windowSize.y / 2 - 100.f));
+			mCurrentPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(windowSize.x / 2.f, windowSize.y / 2 + 300.f));
 			mCurrentPlayerSpaceship.lock()->SetActorRotation(-90.f);
 			onLifeChange.Broadcast(mLifeCount);
 
