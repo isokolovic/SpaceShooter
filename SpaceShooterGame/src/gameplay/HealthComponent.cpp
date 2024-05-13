@@ -37,6 +37,12 @@ namespace ss {
 		}
 	}
 
+	void HealthComponent::SetInitialHealth(float health, float maxHealth)
+	{
+		mHealth = health;
+		mMaxHealth = maxHealth;
+	}
+
 	void HealthComponent::TakenDamage(float amt)
 	{
 		onTakenDamage.Broadcast(amt, mHealth, mMaxHealth);

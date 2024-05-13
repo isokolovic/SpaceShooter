@@ -1,5 +1,8 @@
 #pragma once
 #include "Enemy/EnemySpaceship.h"
+#include "weapon/BulletShooter.h"
+#include "weapon/ThreeWayShooter.h"
+#include "weapon/FrontalWiper.h"
 
 namespace ss
 {
@@ -12,5 +15,9 @@ namespace ss
 		float mSpeed;
 		float mSwitchDistanceToEdge;
 		void CheckMove();
+
+		BulletShooter mBaseShooterLeft;
+		BulletShooter mBaseShooterRight;
+		void ShootBaseShooters();
 	};
 }
