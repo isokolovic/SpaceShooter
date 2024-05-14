@@ -3,6 +3,7 @@
 #include "framework/MathUtility.h"
 #include "weapon/BulletShooter.h"
 #include "weapon/FrontalWiper.h"
+#include "weapon/ThreeWayShooter.h"
 
 namespace ss {
 
@@ -10,7 +11,7 @@ namespace ss {
 		: Spaceship{ owningWorld, path },
 		mMoveInput{},
 		mSpeed{ 200.f },
-		mShooter{ new BulletShooter{ this, 0.1f, {50.f, 0.f} } },
+		mShooter{ new ThreeWayShooter{ this, 1.f, {50.f, 0.f} } },
 		mInvunerableTime{ 2.f },
 		mInvunerable{ true },
 		mInvunerableFlashInterval{ 0.5f },
@@ -18,6 +19,7 @@ namespace ss {
 		mInvunerableFlashDir{ 1 }
 	{
 		SetTeamID(1);
+		mShooter->SetCurrentLevel(4);
 	}
 
 	void PlayerSpaceship::Tick(float deltaTime)

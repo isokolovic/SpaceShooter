@@ -18,6 +18,21 @@ namespace ss
 		mShooterLeft.IncrementLevel(amt);
 		mShooterMid.IncrementLevel(amt);
 		mShooterRight.IncrementLevel(amt);
+
+		mTopLevelShooterLeft.IncrementLevel(amt);
+		mTopLevelShooterRight.IncrementLevel(amt);
+	}
+
+	void ThreeWayShooter::SetCurrentLevel(int level)
+	{
+		Shooter::SetCurrentLevel(level);
+		mShooterLeft.SetCurrentLevel(level);
+		mShooterMid.SetCurrentLevel(level);
+		mShooterRight.SetCurrentLevel(level);
+		
+		mTopLevelShooterLeft.SetCurrentLevel(level);
+		mTopLevelShooterRight.SetCurrentLevel(level);
+
 	}
 
 	void ThreeWayShooter::ShootImpl()

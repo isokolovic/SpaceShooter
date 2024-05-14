@@ -13,11 +13,11 @@ namespace ss
 		BulletShooter mShooterLeft;
 		BulletShooter mShooterMid;
 		BulletShooter mShooterRight;
-
 		BulletShooter mTopLevelShooterLeft;
 		BulletShooter mTopLevelShooterRight;
 
 		virtual void IncrementLevel(int amt) override;
+		virtual void SetCurrentLevel(int level) override;
 	private:
 		virtual void ShootImpl();
 	};

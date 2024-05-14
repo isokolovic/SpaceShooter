@@ -11,6 +11,7 @@ namespace ss
 		FrontalWiper(Actor* owner, float cooldownTime = 0.3f, const sf::Vector2f& localOffset = { 0.f, 0.f }, float width = 60.f);
 
 		virtual void IncrementLevel(int amt = 1) override;
+		virtual void SetCurrentLevel(int newLevel) override;
 	private:
 		virtual void ShootImpl() override;
 
