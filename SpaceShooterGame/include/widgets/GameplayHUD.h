@@ -13,17 +13,23 @@ namespace ss
 	{
 	public:
 		GameplayHUD();
+
+		void GameFinished(bool playerWon);
 		virtual void Draw(sf::RenderWindow& windowRef) override;
 		virtual void Tick(float deltaTime) override;
 		virtual bool HandleEvent(const sf::Event& event) override;
+		Delegate<> onRestartButtonClicked;
+		Delegate<> onQuitButtonClicked;
 	private:
-		virtual void Init(const sf::RenderWindow& windowRef) override;
 		void PlayerHealthUpdated(float amt, float currentHealth, float maxHealth);
 		void PlayerLifeCountUpdated(int amt);
 		void PlayerScoreUpdated(int amt);
 		void PlayerSpaceshipDestroyed(Actor* actor);
 		void RefreshHealthBar();
 		void ConnectPlayerStatus();
+		void RestartButtonClicked();
+		void QuitButtonClicked();
+		virtual void Init(const sf::RenderWindow& windowRef) override;
 
 		TextWidget mFrameRateText;
 		ValueGauge mPlayerHealthBar;
@@ -37,5 +43,12 @@ namespace ss
 		float mCriticalThreshold;
 
 		float mWidgetSpacing;
+
+		TextWidget mWinLoseText;
+		TextWidget mFinalScoreText;
+		Button mRestartButton;
+		Button mQuitButton;
+
+		sf::Vector2u mWindowSize;
 	};
 }

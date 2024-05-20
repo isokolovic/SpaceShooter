@@ -194,6 +194,11 @@ namespace ss
 		return GetTeamID() != other->GetTeamID();
 	}
 
+	void Actor::SetTextureRepeat(bool repeated)
+	{
+		mTexture->setRepeated(repeated);
+	}
+
 	void Actor::InitializePhysics()
 	{
 		if (!mPhysicsBody)

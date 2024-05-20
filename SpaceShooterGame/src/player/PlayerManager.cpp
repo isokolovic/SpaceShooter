@@ -34,6 +34,11 @@ namespace ss
 		return nullptr;
 	}
 
+	void PlayerManager::Reset()
+	{
+		mPlayers.clear();
+	}
+
 	PlayerManager& PlayerManager::Get()
 	{
 		if (!playerManager)

@@ -58,6 +58,7 @@ namespace ss
 		const sf::Sprite& GetSprite() const { return mSprite; }
 
 		Delegate<Actor*> onActorDestroyed;
+		void SetTextureRepeat(bool repeated);
 	private:
 		void InitializePhysics();
 		void UnInitializePhysics();

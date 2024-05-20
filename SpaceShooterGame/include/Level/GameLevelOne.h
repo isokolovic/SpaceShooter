@@ -12,6 +12,7 @@ namespace ss
 	public:
 		GameLevelOne(Application* owningApp);
 	private:
+		virtual void AllGameStagesFinished() override;
 		virtual void BeginPlay() override;
 		weak<PlayerSpaceship> mPlayerSpaceship;
 		weak<GameplayHUD> mGameplayHUD;
@@ -19,5 +20,8 @@ namespace ss
 		virtual void InitGameStages() override;
 		void PlayerSpaceshipDestroyed(Actor* destroyedShip);
 		void GameOver();
+		void RestartGame();
+		void QuitGame();
+		void SpawnCosmetics();
 	};
 }

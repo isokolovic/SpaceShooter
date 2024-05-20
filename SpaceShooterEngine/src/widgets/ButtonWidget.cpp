@@ -36,6 +36,8 @@ namespace ss
 
 	bool Button::HandleEvent(const sf::Event& windowEvent)
 	{
+		if (!GetVisibility()) return false;
+
 		bool handled = false;
 
 		if (windowEvent.type == sf::Event::MouseButtonReleased)
@@ -70,7 +72,6 @@ namespace ss
 				{
 					ButtonUp();
 				}
-				handled = true;
 			}
 		}
 

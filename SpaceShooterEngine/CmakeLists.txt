@@ -32,6 +32,12 @@ add_library(${SPACE_SHOOTER_ENGINE_TARGET_NAME} STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/TimerManager.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/TimerManager.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/BackdropActor.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/BackdropActor.cpp  
+  
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/BackgroundLayer.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/BackgroundLayer.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/VFX/Particle.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/VFX/Particle.cpp
 

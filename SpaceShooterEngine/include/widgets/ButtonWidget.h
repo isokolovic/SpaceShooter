@@ -22,7 +22,6 @@ namespace ss
 		void ButtonDown();
 		void MouseHovered();
 
-
 		shared<sf::Texture> mButtonTexture;
 		sf::Sprite mButtonSprite;
 		shared<sf::Font> mButtonFont;
